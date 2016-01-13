@@ -1,0 +1,7 @@
+# Not used with Express dev server or surge.sh.  Kept around in case we want to host somewhere else
+
+DirectoryIndex 200.html
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . 200.html [L]
