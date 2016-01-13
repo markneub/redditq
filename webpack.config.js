@@ -49,13 +49,15 @@ var config = {
       loader: "handlebars-loader"
     }]
   },
-
-  // We have to manually add the Hot Replacement plugin when running
-  // from Node
   plugins: [
     new ExtractTextPlugin("style.css"),
-    new Webpack.HotModuleReplacementPlugin()
-  ]
+    new Webpack.HotModuleReplacementPlugin() // we have to manually add the Hot Replacement plugin when running from Node
+  ],
+  resolve: {
+    alias: {
+      "eventEmitter/EventEmitter": "wolfy87-eventemitter"
+    }
+  }
 };
 
 module.exports = config;

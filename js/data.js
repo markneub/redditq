@@ -1,6 +1,9 @@
 var Helpers = require('./helpers');
 var reqwest = require('reqwest');
+var imagesLoaded = require("imagesloaded");
 var ImageTemplate = require("../templates/image.hbs");
+
+var itemQueue = [];
 
 var addItem = function(child) {
   var data = child.data;
@@ -13,6 +16,9 @@ var addItem = function(child) {
       break;
   }
   $(html).appendTo("#wrapper");
+  if ($("#wrapper").children(".active").length === 0) {
+    $("#wrapper").children(":first-child").addClass("active");
+  }
 }
 
 var download = function(path, qs, limit) {
@@ -34,13 +40,22 @@ function buildUrl(path, qs, limit) {
 var downloadCompleteHandler = function(result) {
   var children = result.data.children;
   for (var i = 0; i < children.length; i++) {
-    var child = children[i];
-    addItem(child);
+    itemQueue.push(children[i]);
   }
-  if ($("#wrapper").children(".active").length === 0) {
-    $("#wrapper").children(":first-child").addClass("active");
-  }
+  addItem(itemQueue.shift());
+  loadImages();
 };
+
+var loadImages = function() {
+  if (itemQueue.length === 0) {
+    return;
+  }
+  // Preload each image after the previous one is done loading
+  $('#wrapper').imagesLoaded({ background: '.item' }, function() {
+    addItem(itemQueue.shift());
+    loadImages();
+  });
+}
 
 module.exports = {
   download: download
