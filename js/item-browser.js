@@ -1,7 +1,8 @@
 var TweenLite = require('./vendor/TweenLite');
 var CSSPlugin = require('./vendor/CSSPlugin');
+var Data = require('./data');
 
-var transitionSpeed = 0.3;
+var transitionSpeed = 0.35;
 
 var nextItem = function() {
   var $currActive = $("#wrapper").children(".active");
@@ -14,14 +15,16 @@ var nextItem = function() {
 
   TweenLite.to($nextItem, 0, {
     x: "100%",
-    opacity: 1
-  });
-  TweenLite.to($activeItem, transitionSpeed, {
-    x: "-100%"
-  });
-  TweenLite.to($nextItem, transitionSpeed, {
-    x: "0%",
     onComplete: function() {
+      TweenLite.to($activeItem, transitionSpeed, {
+        x: "-100%"
+      });
+      TweenLite.to($nextItem, transitionSpeed, {
+        x: "0%",
+        onComplete: function() {
+          Data.loadImages();
+        }
+      });
       $activeItem.removeClass("active");
       $nextItem.addClass("active");
     }
@@ -39,14 +42,16 @@ var prevItem = function() {
 
   TweenLite.to($prevItem, 0, {
     x: "-100%",
-    opacity: 1
-  });
-  TweenLite.to($activeItem, transitionSpeed, {
-    x: "100%"
-  });
-  TweenLite.to($prevItem, transitionSpeed, {
-    x: "0%",
     onComplete: function() {
+      TweenLite.to($activeItem, transitionSpeed, {
+        x: "100%"
+      });
+      TweenLite.to($prevItem, transitionSpeed, {
+        x: "0%",
+        onComplete: function() {
+          Data.loadImages();
+        }
+      });
       $activeItem.removeClass("active");
       $prevItem.addClass("active");
     }

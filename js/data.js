@@ -17,7 +17,7 @@ var addItem = function(child) {
   }
   $(html).appendTo("#wrapper");
   if ($("#wrapper").children(".active").length === 0) {
-    $("#wrapper").children(":first-child").addClass("active");
+    $("#wrapper").children(":first-child").addClass("active").css("transform", "translateX(0%)");
   }
 }
 
@@ -50,7 +50,11 @@ var loadImages = function() {
   if (itemQueue.length === 0) {
     return;
   }
-  // Preload each image after the previous one is done loading
+  // Preload a maximum of 5 images ahead, each after the previous one is done loading
+  var $activeItem = $('#wrapper').children('.item.active');
+  if ($activeItem.nextAll().length >= 5) {
+    return;
+  }
   $('#wrapper').imagesLoaded({ background: '.item' }, function() {
     addItem(itemQueue.shift());
     loadImages();
@@ -58,5 +62,6 @@ var loadImages = function() {
 }
 
 module.exports = {
-  download: download
+  download: download,
+  loadImages: loadImages
 }
