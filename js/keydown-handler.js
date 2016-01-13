@@ -17,7 +17,6 @@ var KEYS = {
 };
 
 $(document).keydown(function(e) {
-  e.preventDefault();
   switch (e.which) {
     case KEYS.R_KEY:
       //
