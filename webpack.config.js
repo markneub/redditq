@@ -53,6 +53,9 @@ var config = {
     new ExtractTextPlugin("style.css"),
     new Webpack.HotModuleReplacementPlugin() // we have to manually add the Hot Replacement plugin when running from Node
   ],
+  externals: {
+    'TweenLite': 'TweenLite'
+  },
   resolve: {
     alias: {
       "eventEmitter/EventEmitter": "wolfy87-eventemitter"
