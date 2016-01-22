@@ -16,8 +16,10 @@ var addItem = function(child) {
       break;
   }
   $(html).appendTo("#wrapper");
-  if ($("#wrapper").children(".active").length === 0) {
-    $("#wrapper").children(":first-child").addClass("active").css("transform", "translateX(0%)");
+  if ($("#wrapper").children(".item.present").length === 0) {
+    var $firstItem = $("#wrapper").children(":first-child");
+    $firstItem.removeClass("future").addClass("present");
+    $firstItem.next().addClass("ondeck");
   }
 }
 

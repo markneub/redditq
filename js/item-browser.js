@@ -5,57 +5,37 @@ var Data = require('./data');
 var transitionSpeed = 0.35;
 
 var nextItem = function() {
-  var $currActive = $("#wrapper").children(".active");
-  if ($currActive.length == 0 || $currActive.next().length == 0) {
+  var $presentItem = $("#wrapper").children(".item.present");
+  var $nextItem = $presentItem.next();
+  if ($presentItem.length == 0 || $nextItem.length == 0) {
     return;
   }
 
-  var $activeItem = $("#wrapper").children(".active.item");
-  var $nextItem = $activeItem.next();
-
-  TweenLite.to($nextItem, 0, {
-    x: "100%",
-    onComplete: function() {
-      TweenLite.to($activeItem, transitionSpeed, {
-        x: "-100%"
-      });
-      TweenLite.to($nextItem, transitionSpeed, {
-        x: "0%",
-        onComplete: function() {
-          Data.loadImages();
-        }
-      });
-      $activeItem.removeClass("active");
-      $nextItem.addClass("active");
-    }
-  });
+  $presentItem.removeClass("present").addClass("past");
+  $nextItem.removeClass("future").addClass("present");
 }
 
 var prevItem = function() {
-  var $currActive = $("#wrapper").children(".active");
-  if ($currActive.length == 0 || $currActive.prev().length == 0) {
+  var $presentItem = $("#wrapper").children(".item.present");
+  var $prevItem = $presentItem.prev();
+  var $prevPrevItem = $prevItem.prev();
+
+  if ($presentItem.length == 0 || $prevItem.length == 0) {
     return;
   }
 
-  var $activeItem = $("#wrapper").children(".active.item");
-  var $prevItem = $activeItem.prev();
+  $presentItem.removeClass("present").addClass("future");
+  $prevItem.removeClass("past").addClass("present");
+}
 
-  TweenLite.to($prevItem, 0, {
-    x: "-100%",
-    onComplete: function() {
-      TweenLite.to($activeItem, transitionSpeed, {
-        x: "100%"
-      });
-      TweenLite.to($prevItem, transitionSpeed, {
-        x: "0%",
-        onComplete: function() {
-          Data.loadImages();
-        }
-      });
-      $activeItem.removeClass("active");
-      $prevItem.addClass("active");
-    }
-  });
+var updateOnDeck = function() {
+  var $allItems = $("#wrapper").children(".item");
+  $allItems.removeClass("ondeck");
+  var $presentItem = $("#wrapper").children(".item.present");
+  var $prevItem = $presentItem.prev();
+  var $nextItem = $presentItem.next();
+  $prevItem.addClass("ondeck");
+  $nextItem.addClass("ondeck");
 }
 
 module.exports = {
