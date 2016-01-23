@@ -1,5 +1,3 @@
-var TweenLite = require('./vendor/TweenLite');
-var CSSPlugin = require('./vendor/CSSPlugin');
 var Data = require('./data');
 var State = require('./state');
 
