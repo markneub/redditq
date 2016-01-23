@@ -1,4 +1,5 @@
 var Helpers = require('./helpers');
+var State = require('./state');
 var reqwest = require('reqwest');
 var imagesLoaded = require("imagesloaded");
 var ImageTemplate = require("../templates/image.hbs");
@@ -23,8 +24,8 @@ var addItem = function(child) {
   }
 }
 
-var download = function(path, qs, limit) {
-  var url = buildUrl(path, qs, limit);
+var download = function(path, qs, afterId) {
+  var url = buildUrl(path, qs, afterId);
   reqwest({
     url: url,
     type: 'jsonp',
@@ -35,17 +36,22 @@ var download = function(path, qs, limit) {
   })
 };
 
-function buildUrl(path, qs, limit) {
-  return "https://www.reddit.com" + path + ".json" + (qs === "" ? "?foo=bar" : qs);
+function buildUrl(path, qs, afterId) {
+  afterId = afterId || "";
+  return "https://www.reddit.com" + path + ".json" + (qs === "" ? "?foo=bar" : qs) + (afterId === "" ? "" : "&after=" + afterId);
 };
 
 var downloadCompleteHandler = function(result) {
+  State.afterId = result.data.after;
   var children = result.data.children;
   for (var i = 0; i < children.length; i++) {
-    itemQueue.push(children[i]);
+    var child = children[i];
+    itemQueue.push(child);
   }
-  addItem(itemQueue.shift());
-  loadImages();
+  if (itemQueue.length > 0) {
+    addItem(itemQueue.shift());
+    loadImages();
+  }
 };
 
 var loadImages = function() {
@@ -53,13 +59,15 @@ var loadImages = function() {
     return;
   }
   // Preload a maximum of 5 images ahead, each after the previous one is done loading
-  var $activeItem = $('#wrapper').children('.item.active');
-  if ($activeItem.nextAll().length >= 5) {
+  var $activeItem = $('#wrapper').children('.item.present');
+  if ($activeItem.nextAll().length >= 4) {
     return;
   }
   $('#wrapper').imagesLoaded({ background: '.item' }, function() {
-    addItem(itemQueue.shift());
-    loadImages();
+    if (itemQueue.length > 0) {
+      addItem(itemQueue.shift());
+      loadImages();
+    }
   });
 }
 

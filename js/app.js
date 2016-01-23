@@ -9,4 +9,4 @@ var path = location.pathname;
 var qs = location.search;
 
 // init
-Data.download(path, qs, 5);
+Data.download(path, qs);

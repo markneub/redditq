@@ -1,8 +1,7 @@
 var TweenLite = require('./vendor/TweenLite');
 var CSSPlugin = require('./vendor/CSSPlugin');
 var Data = require('./data');
-
-var transitionSpeed = 0.35;
+var State = require('./state');
 
 var nextItem = function() {
   var $presentItem = $("#wrapper").children(".item.present");
@@ -13,6 +12,13 @@ var nextItem = function() {
 
   $presentItem.removeClass("present").addClass("past");
   $nextItem.removeClass("future").addClass("present");
+
+  Data.loadImages();
+
+  // download more images if we're close to the end
+  if ($nextItem.next().next().length === 0) {
+    Data.download(location.pathname, location.search, State.afterId);
+  }
 }
 
 var prevItem = function() {
