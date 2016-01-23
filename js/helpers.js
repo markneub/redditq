@@ -3,6 +3,8 @@ var getFileExtension = function(filename) {
 }
 
 var getMediaType = function(url) {
+  // Some common sources don't use file extensions, but still serve a plain ol' image file.
+
   // 500px.org
   if (url.indexOf('500px.org') > -1) {
     return "image";
