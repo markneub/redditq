@@ -4,10 +4,13 @@ var template = require("../templates/subredditnavigator.hbs");
 var show = function() {
   var html = template();
   $("body").append(html);
+  $("#subreddit-navigator").fadeIn(300);
 }
 
 var hide = function() {
-  $("#subreddit-navigator").remove();
+  $("#subreddit-navigator").fadeOut(150, function() {
+    $(this).remove();
+  });
 }
 
 var isVisible = function() {
