@@ -30,8 +30,13 @@ var processUrl = function(url) {
   if ((parseUrl(url).hostname == "imgur.com") &&
       (url.indexOf("gallery") == -1) &&
       (url.indexOf("/a/") == -1) &&
-      (url.indexOf("gifv") == -1)) {
+      (url.indexOf(".gifv") == -1)) {
     newUrl = url + ".jpg"; // any suffix is ok
+  }
+
+  // convert imgur gifv url into gif url by slicing off the final v
+  if (url.indexOf(".gifv") > -1) {
+    newUrl = url.slice(0, -1);
   }
 
   return newUrl;
