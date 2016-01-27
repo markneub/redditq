@@ -1,6 +1,5 @@
 var Helpers = require('./helpers');
 var State = require('./state');
-var reqwest = require('reqwest');
 var imagesLoaded = require("imagesloaded");
 var ImageTemplate = require("../templates/image.hbs");
 
@@ -29,10 +28,9 @@ var addItem = function(child) {
 
 var download = function(path, qs, afterId) {
   var url = buildUrl(path, qs, afterId);
-  reqwest({
+  $.ajax({
     url: url,
-    type: 'jsonp',
-    jsonpCallback: 'jsonp',
+    dataType: "json",
     success: function(resp) {
       downloadCompleteHandler(resp);
     }
