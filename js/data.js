@@ -8,19 +8,22 @@ var itemQueue = [];
 
 var addItem = function(child) {
   var data = child.data;
+  var url = Helpers.processUrl(data.url);
   var html = "";
-  switch (Helpers.getMediaType(data.url)) {
+  switch (Helpers.getMediaType(url)) {
+    case "imgur-album":
+      Helpers.addImgurAlbum(url);
+      break;
     case "image":
       html = ImageTemplate(data);
+      $(html).appendTo("#wrapper");
+      if ($("#wrapper").children(".item.present").length === 0) {
+        var $firstItem = $("#wrapper").children(":first-child");
+        $firstItem.removeClass("future").addClass("present");
+      }
       break;
     default:
       break;
-  }
-  $(html).appendTo("#wrapper");
-  if ($("#wrapper").children(".item.present").length === 0) {
-    var $firstItem = $("#wrapper").children(":first-child");
-    $firstItem.removeClass("future").addClass("present");
-    $firstItem.next().addClass("ondeck");
   }
 }
 
@@ -33,7 +36,7 @@ var download = function(path, qs, afterId) {
     success: function(resp) {
       downloadCompleteHandler(resp);
     }
-  })
+  });
 };
 
 function buildUrl(path, qs, afterId) {

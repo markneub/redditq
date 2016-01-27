@@ -22,7 +22,33 @@ var nextItem = function() {
 var prevItem = function() {
   var $presentItem = $("#wrapper").children(".item.present");
   var $prevItem = $presentItem.prev();
-  var $prevPrevItem = $prevItem.prev();
+
+  if ($presentItem.length == 0 || $prevItem.length == 0) {
+    return;
+  }
+
+  $presentItem.removeClass("present").addClass("future");
+  $prevItem.removeClass("past").addClass("present");
+}
+
+var nextImgurAlbumImage = function() {
+  var $presentItem = $("#wrapper")
+    .children(".item.present")
+    .children(".imgur-album-image.present");
+  var $nextItem = $presentItem.next();
+  if ($presentItem.length == 0 || $nextItem.length == 0) {
+    return;
+  }
+
+  $presentItem.removeClass("present").addClass("past");
+  $nextItem.removeClass("future").addClass("present");
+}
+
+var prevImgurAlbumImage = function() {
+  var $presentItem = $("#wrapper")
+    .children(".item.present")
+    .children(".imgur-album-image.present");
+  var $prevItem = $presentItem.prev();
 
   if ($presentItem.length == 0 || $prevItem.length == 0) {
     return;
@@ -34,5 +60,7 @@ var prevItem = function() {
 
 module.exports = {
   nextItem: nextItem,
-  prevItem: prevItem
+  prevItem: prevItem,
+  nextImgurAlbumImage: nextImgurAlbumImage,
+  prevImgurAlbumImage: prevImgurAlbumImage
 }

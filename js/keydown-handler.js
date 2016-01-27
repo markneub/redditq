@@ -31,7 +31,7 @@ $(document).keydown(function(e) {
       break;
     case KEYS.UP_KEY:
     case KEYS.W_KEY:
-      //
+      itemBrowser.prevImgurAlbumImage();
       break;
     case KEYS.RIGHT_KEY:
     case KEYS.D_KEY:
@@ -39,7 +39,7 @@ $(document).keydown(function(e) {
       break;
     case KEYS.DOWN_KEY:
     case KEYS.S_KEY:
-      //
+      itemBrowser.nextImgurAlbumImage();
       break;
     case KEYS.LEFT_KEY:
     case KEYS.A_KEY:
