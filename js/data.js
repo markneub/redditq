@@ -18,6 +18,7 @@ var addItem = function(child) {
       addImage(data);
       break;
     default:
+      console.log("Unsupported url type encountered: " + url);
       break;
   }
 }

@@ -1,3 +1,5 @@
+var urijs = require("urijs");
+
 var getFileExtension = function(filename) {
   return filename.split('.').pop().toLowerCase();
 }
@@ -25,12 +27,13 @@ var getMediaType = function(url) {
 
 var processUrl = function(url) {
   var newUrl = url;
+  console.log(urijs(url).host());
 
   // convert imgur page url into direct image url
-  if ((parseUrl(url).hostname == "imgur.com") &&
+  if ((urijs(url).host().indexOf("imgur.com") > -1) &&
       (url.indexOf("gallery") == -1) &&
       (url.indexOf("/a/") == -1) &&
-      (url.indexOf(".gifv") == -1)) {
+      (urijs(url).suffix().length == 0)) {
     newUrl = url + ".jpg"; // any suffix is ok
   }
 
@@ -42,17 +45,9 @@ var processUrl = function(url) {
   return newUrl;
 }
 
-// http://stackoverflow.com/a/6644749
-function parseUrl(url) {
-  var a = document.createElement('a');
-  a.href = url;
-  return a;
-}
-
 
 module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,
-  processUrl: processUrl,
-  parseUrl: parseUrl
+  processUrl: processUrl
 }
