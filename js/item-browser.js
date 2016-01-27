@@ -32,16 +32,6 @@ var prevItem = function() {
   $prevItem.removeClass("past").addClass("present");
 }
 
-var updateOnDeck = function() {
-  var $allItems = $("#wrapper").children(".item");
-  $allItems.removeClass("ondeck");
-  var $presentItem = $("#wrapper").children(".item.present");
-  var $prevItem = $presentItem.prev();
-  var $nextItem = $presentItem.next();
-  $prevItem.addClass("ondeck");
-  $nextItem.addClass("ondeck");
-}
-
 module.exports = {
   nextItem: nextItem,
   prevItem: prevItem
