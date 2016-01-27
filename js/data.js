@@ -8,6 +8,7 @@ var itemQueue = [];
 var addItem = function(child) {
   var data = child.data;
   var url = Helpers.processUrl(data.url);
+  data.url = url;
   var html = "";
   switch (Helpers.getMediaType(url)) {
     case "imgur-album":

@@ -24,7 +24,17 @@ var getMediaType = function(url) {
 }
 
 var processUrl = function(url) {
-  return url;
+  var newUrl = url;
+
+  // convert imgur page url into direct image url
+  if ((parseUrl(url).hostname == "imgur.com") &&
+      (url.indexOf("gallery") == -1) &&
+      (url.indexOf("/a/") == -1) &&
+      (url.indexOf("gifv") == -1)) {
+    newUrl = url + ".jpg"; // any suffix is ok
+  }
+
+  return newUrl;
 }
 
 var addImgurAlbum = function(url) {
@@ -44,9 +54,18 @@ var addImgurAlbum = function(url) {
   });
 }
 
+// http://stackoverflow.com/a/6644749
+function parseUrl(url) {
+  var a = document.createElement('a');
+  a.href = url;
+  return a;
+}
+
+
 module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,
   processUrl: processUrl,
-  addImgurAlbum: addImgurAlbum
+  addImgurAlbum: addImgurAlbum,
+  parseUrl: parseUrl
 }
