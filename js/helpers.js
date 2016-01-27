@@ -42,23 +42,6 @@ var processUrl = function(url) {
   return newUrl;
 }
 
-var addImgurAlbum = function(url) {
-  var id = url.split('/a/')[1];
-  $.ajax({
-    url: "https://api.imgur.com/3/album/" + id,
-    dataType: "json",
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");
-    },
-    success: function(resp) {
-      var data = resp.data;
-      var albumTemplate = require("../templates/imgur-album.hbs");
-      var html = albumTemplate(data);
-      $(html).appendTo("#wrapper");
-    }
-  });
-}
-
 // http://stackoverflow.com/a/6644749
 function parseUrl(url) {
   var a = document.createElement('a');
@@ -71,6 +54,5 @@ module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,
   processUrl: processUrl,
-  addImgurAlbum: addImgurAlbum,
   parseUrl: parseUrl
 }

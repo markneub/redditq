@@ -1,7 +1,7 @@
 var Helpers = require('./helpers');
 var State = require('./state');
 var imagesLoaded = require("imagesloaded");
-var ImageTemplate = require("../templates/image.hbs");
+var imageTemplate = require("../templates/image.hbs");
 
 var itemQueue = [];
 
@@ -12,18 +12,39 @@ var addItem = function(child) {
   var html = "";
   switch (Helpers.getMediaType(url)) {
     case "imgur-album":
-      Helpers.addImgurAlbum(url);
+      addImgurAlbum(url);
       break;
     case "image":
-      html = ImageTemplate(data);
-      $(html).appendTo("#wrapper");
-      if ($("#wrapper").children(".item.present").length === 0) {
-        var $firstItem = $("#wrapper").children(":first-child");
-        $firstItem.removeClass("future").addClass("present");
-      }
+      addImage(data);
       break;
     default:
       break;
+  }
+}
+
+var addImgurAlbum = function(url) {
+  var id = url.split('/a/')[1];
+  $.ajax({
+    url: "https://api.imgur.com/3/album/" + id,
+    dataType: "json",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");
+    },
+    success: function(resp) {
+      var data = resp.data;
+      var albumTemplate = require("../templates/imgur-album.hbs");
+      var html = albumTemplate(data);
+      $(html).appendTo("#wrapper");
+    }
+  });
+}
+
+var addImage = function(data) {
+  html = imageTemplate(data);
+  $(html).appendTo("#wrapper");
+  if ($("#wrapper").children(".item.present").length === 0) {
+    var $firstItem = $("#wrapper").children(":first-child");
+    $firstItem.removeClass("future").addClass("present");
   }
 }
 
