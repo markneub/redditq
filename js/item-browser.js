@@ -14,7 +14,7 @@ var nextItem = function() {
   $nextItem.removeClass("future").addClass("present");
 
   if ($nextItem.hasClass("imgur-album")) {
-    showAlbumIndex($nextItem.children(":eq(0)"));
+    showAlbumIndex($nextItem.children(":eq(0)"), true);
   } else {
     hideAlbumIndex();
   };
@@ -35,7 +35,7 @@ var prevItem = function() {
   }
 
   if ($prevItem.hasClass("imgur-album")) {
-    showAlbumIndex($prevItem.children(":eq(0)"));
+    showAlbumIndex($prevItem.children(":eq(0)"), true);
   } else {
     hideAlbumIndex();
   };
@@ -56,7 +56,7 @@ var nextImgurAlbumImage = function() {
   $presentItem.removeClass("present").addClass("past");
   $nextItem.removeClass("future").addClass("present");
 
-  showAlbumIndex($nextItem);
+  showAlbumIndex($nextItem, false);
 }
 
 var prevImgurAlbumImage = function() {
@@ -72,16 +72,17 @@ var prevImgurAlbumImage = function() {
   $presentItem.removeClass("present").addClass("future");
   $prevItem.removeClass("past").addClass("present");
 
-  showAlbumIndex($prevItem);
+  showAlbumIndex($prevItem, false);
 }
 
-var showAlbumIndex = function($image) {
+var showAlbumIndex = function($image, flashBig) {
   $albumCounter
     .text($image.data("index") + "/" + $image.parent().data("length"))
+    .addClass(flashBig ? "obvious" : "")
     .addClass("visible")
   setTimeout(function() {
-    $albumCounter.addClass("stealth");
-  }, 400);
+    $albumCounter.removeClass("obvious");
+  }, 500);
 }
 
 var hideAlbumIndex = function() {

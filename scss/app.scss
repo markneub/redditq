@@ -74,23 +74,28 @@ body {
   left: 12px;
   color: #000000;
   font-size: 24px;
+  padding: 10px 12px;
   font-family: Arial, serif;
   z-index: 2;
   background-color: white;
-  width: 56px;
-  height: 56px;
   text-align: center;
-  line-height: 56px;
-  border-radius: 28px;
-  transition: 0.1s opacity;
+  border-radius: 8px;
+  transition: 0.3s all;
   opacity: 0;
   &.visible {
-    opacity: 1;
-  }
-  &.stealth {
-    opacity: 0.1;
+    opacity: 0.5;
     &:hover {
       opacity: 1;
     }
+  }
+  &.obvious {
+    transition: top 0s, left 0s, opacity 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    opacity: 0.9;
+    font-size: 7vw;
+    padding: 3vw;
+    border-radius: 3vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
