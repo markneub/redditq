@@ -73,26 +73,27 @@ body {
   top: 12px;
   left: 12px;
   color: #000000;
-  font-size: 24px;
-  padding: 10px 12px;
+  font-size: 30px;
+  padding: 11px 12px;
   font-family: Arial, serif;
   z-index: 2;
   background-color: white;
   text-align: center;
-  border-radius: 8px;
-  transition: 0.3s all;
+  border-radius: 12px;
+  transition: 0.1s opacity;
   opacity: 0;
   &.visible {
-    opacity: 0.5;
+    transition: 0.3s all cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    opacity: 0.3;
     &:hover {
       opacity: 1;
     }
   }
-  &.obvious {
+  &.emphasis {
     transition: top 0s, left 0s, opacity 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
     opacity: 0.9;
-    font-size: 7vw;
-    padding: 3vw;
+    font-size: 7.25vw;
+    padding: 2.65vw 2.85vw;
     border-radius: 3vw;
     top: 50%;
     left: 50%;

@@ -1,7 +1,6 @@
 var Data = require('./data');
 var State = require('./state');
-
-$albumCounter = $("#album-counter");
+var albumCounter = require('./album-counter');
 
 var nextItem = function() {
   var $presentItem = $("#wrapper").children(".item.present");
@@ -14,9 +13,9 @@ var nextItem = function() {
   $nextItem.removeClass("future").addClass("present");
 
   if ($nextItem.hasClass("imgur-album")) {
-    showAlbumIndex($nextItem.children(":eq(0)"), true);
+    albumCounter.show($nextItem.children(".imgur-album-image.present"), true);
   } else {
-    hideAlbumIndex();
+    albumCounter.hide();
   };
   Data.loadImages();
 
@@ -35,9 +34,9 @@ var prevItem = function() {
   }
 
   if ($prevItem.hasClass("imgur-album")) {
-    showAlbumIndex($prevItem.children(":eq(0)"), true);
+    albumCounter.show($prevItem.children(".imgur-album-image.present"), true);
   } else {
-    hideAlbumIndex();
+    albumCounter.hide();
   };
 
   $presentItem.removeClass("present").addClass("future");
@@ -56,7 +55,7 @@ var nextImgurAlbumImage = function() {
   $presentItem.removeClass("present").addClass("past");
   $nextItem.removeClass("future").addClass("present");
 
-  showAlbumIndex($nextItem, false);
+  albumCounter.show($nextItem, false);
 }
 
 var prevImgurAlbumImage = function() {
@@ -72,21 +71,7 @@ var prevImgurAlbumImage = function() {
   $presentItem.removeClass("present").addClass("future");
   $prevItem.removeClass("past").addClass("present");
 
-  showAlbumIndex($prevItem, false);
-}
-
-var showAlbumIndex = function($image, flashBig) {
-  $albumCounter
-    .text($image.data("index") + "/" + $image.parent().data("length"))
-    .addClass(flashBig ? "obvious" : "")
-    .addClass("visible")
-  setTimeout(function() {
-    $albumCounter.removeClass("obvious");
-  }, 500);
-}
-
-var hideAlbumIndex = function() {
-  $albumCounter.removeClass("visible").removeClass("stealth");
+  albumCounter.show($prevItem, false);
 }
 
 module.exports = {
