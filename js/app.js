@@ -8,5 +8,4 @@ var ItemBrowser = require("./item-browser");
 var path = location.pathname;
 var qs = location.search;
 
-// init
 Data.download(path, qs);

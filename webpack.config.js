@@ -6,6 +6,10 @@ var buildPath = path.resolve(__dirname, 'build');
 var mainPath = path.resolve(__dirname, 'js', 'app.js');
 
 var config = {
+  node: {
+   __filename: true,
+   fs: 'empty'
+  },
 
   // Makes sure errors in console map to the correct file
   // and line number

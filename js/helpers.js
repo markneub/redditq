@@ -1,3 +1,4 @@
+var Handlebars = require("handlebars/runtime");
 var urijs = require("urijs");
 
 var getFileExtension = function(filename) {
@@ -27,7 +28,6 @@ var getMediaType = function(url) {
 
 var processUrl = function(url) {
   var newUrl = url;
-  console.log(urijs(url).host());
 
   // convert imgur page url into direct image url
   if ((urijs(url).host().indexOf("imgur.com") > -1) &&
@@ -45,6 +45,9 @@ var processUrl = function(url) {
   return newUrl;
 }
 
+Handlebars.registerHelper('addOne', function(value) {
+  return value + 1;
+});
 
 module.exports = {
   getFileExtension: getFileExtension,
