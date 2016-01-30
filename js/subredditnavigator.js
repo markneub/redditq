@@ -3,6 +3,7 @@ require("../scss/subredditnavigator.scss");
 var template = require("../templates/subreddit-navigator.hbs");
 var Data = require("./data");
 var Helpers = require("./helpers");
+var albumCounter = require("./album-counter");
 
 var $subredditNavigator = $("#subreddit-navigator");
 
@@ -36,11 +37,12 @@ var show = function() {
     }
   });
 
-  $subredditNavigator.find("button").click(function(e){
+  $("#view-btn").click(function(e){
     var sort = $(".sort .choice.active").attr("id");
     var t = sort == "top" ? "?t=" + $(".t .choice.active").attr("id") : "";
     var newHref = "/r/" + $("#subreddit").val() + "/" + sort + t;
     if (history && history.pushState) {
+      albumCounter.hide();
       Data.clear();
       history.pushState({}, "", newHref);
       Data.download("/r/" + $("#subreddit").val() + "/" + sort, t);

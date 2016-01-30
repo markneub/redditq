@@ -22,29 +22,41 @@ $border_width: 1px;
     transform: scale(1);
     transition: 0.25s all;
     opacity: 1;
+    .choice:hover {
+      cursor: pointer;
+    }
   }
   .input-item {
     padding: 20px 5px;
     text-align: center;
     label,
     input {
+      height: #{1.33 * $max_scale}vw;
       font-size: #{1 * $max_scale}vw;
-      @media screen and (max-width: 2280px) { font-size: 30px; }
-    }
-    input {
-      padding: #{0.25 * $max_scale}vw #{0.1 * $max_scale}vw;
-      width: #{7.5 * $max_scale}vw;
+      padding: #{0.25 * $max_scale}vw #{0.2 * $max_scale}vw;
       @media screen and (max-width: 2280px) {
-        padding: 7.5px 3px;
-        width: 225px;
+        height: 40px;
+        font-size: 30px;
+        padding: 7.5px 6px;
       }
     }
-    button {
-      font-size: #{$max_scale}vw;
-      margin-top: #{1.5 * $max_scale}vw;
+    label {
+      position: relative;
+    }
+    input {
+      &::placeholder {
+        color: #feffe8;
+        font-style: italic;
+      }
+      background: #CACC90;
+      -webkit-appearance: none;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+      width: #{10 * $max_scale}vw;
       @media screen and (max-width: 2280px) {
-        font-size: 30px;
-        margin-top: 45px;
+        width: 300px;
       }
     }
     .sort-chooser {
@@ -53,12 +65,10 @@ $border_width: 1px;
       float: left;
       .choice {
         text-align: center;
+        user-select: none;
         width: #{3 * $max_scale}vw;
         @media screen and (max-width: 2280px) { width: 90px; }
         display: inline-block;
-        &:hover {
-          cursor: pointer;
-        }
         border-top: $border_width solid $border_color;
         border-bottom: $border_width solid $border_color;
         border-right: $border_width solid $border_color;
@@ -139,5 +149,17 @@ $border_width: 1px;
   }
   &.active {
     background: #FFB7B4;
+  }
+}
+
+#view-btn {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: #{$max_scale}vw;
+  margin-top: #{2 * $max_scale}vw;
+  @media screen and (max-width: 2280px) {
+    font-size: 30px;
+    margin-top: 60px;
   }
 }
