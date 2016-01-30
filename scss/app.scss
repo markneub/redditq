@@ -6,6 +6,14 @@ html {
 
 body {
   background-color: #000;
+  text-align: center;
+  height: 100%;
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
 }
 
 #wrapper {

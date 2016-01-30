@@ -5,19 +5,21 @@ $border_radius: #{0.5 * $max_scale};
 $border_width: 1px;
 #subreddit-navigator {
   @include dialog();
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.95);
+  display: inline-block;
+  position: relative;
+  transform: scale(0.95);
   font-size: #{1 * $max_scale}vw;
   padding: #{1 * $max_scale}vw;
+
+  vertical-align: middle;
+
   @media screen and (max-width: 2280px) {
     font-size: 30px;
     padding: 30px;
   }
 
   &.visible {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     transition: 0.25s all;
     opacity: 1;
   }
