@@ -7,18 +7,25 @@ $max_scale: 1.3;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
   font-size: #{1 * $max_scale}vw;
+  padding: #{1 * $max_scale}vw;
   &.visible {
     transform: translate(-50%, -50%) scale(1);
     transition: 0.25s all;
     opacity: 1;
   }
   .input-item {
-    float: left;
     padding: 20px 5px;
+    text-align: center;
+    label, input {
+      font-size: #{1 * $max_scale}vw;
+    }
     input {
-      height: #{1 * $max_scale}vw;
-      margin: #{0.5 * $max_scale}vw 0;
-      width: #{5 * $max_scale}vw;
+      padding: #{0.25 * $max_scale}vw #{0.1 * $max_scale}vw;
+      width: #{7.5 * $max_scale}vw;
+    }
+    button {
+      font-size: #{$max_scale}vw;
+      margin-top: #{1.5 * $max_scale}vw;
     }
     .sort-chooser {
       .choice {
@@ -36,22 +43,25 @@ $max_scale: 1.3;
         &.active {
           background: red;
         }
-        opacity: 0.99; // create a new stacking context
         border-top: 1px solid red;
         border-bottom: 1px solid red;
         border-right: 1px solid red;
       }
-      opacity: 0.99;
+      position: relative;
       display: block;
       float: left;
       &.sort {
         z-index: 2;
       }
       &.t {
+        margin-left: -10px;
         z-index: 1;
-        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: max-width 0.35s ease;
         &.visible {
-          opacity: 1;
+          max-width: 999px;
         }
       }
     }
@@ -67,14 +77,4 @@ $max_scale: 1.3;
 #top, #all {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-}
-
-#hour {
-  margin-left: -10px;
-}
-
-input,
-select,
-button {
-  font-size: #{$max_scale}vw;
 }

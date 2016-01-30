@@ -18,7 +18,7 @@ body {
 }
 
 @mixin dialog() {
-  background: linear-gradient(to bottom, #f4fcff 0%,#fdffed 15%,#fdfff4 50%,#fdffed 50%,#fdffed 50%,#fdffed 85%,#fdffed 85%,#f4fcff 100%);
+  background: linear-gradient(to bottom, #feffe8 0%,#d6dbbf 100%);
   box-shadow: 0px 0px 47px 8px rgba(0,0,0,0.25);
   padding: 10px 14px;
   color: #282828;
@@ -46,6 +46,10 @@ body {
   background-repeat: no-repeat;
   background-color: #000;
   background-position: center center;
+}
+
+@mixin text-shadow() {
+  text-shadow: 1px 1px 0px rgba(242, 242, 242, 0.5), 1px 2px 0px rgba(177, 177, 178, 0.5);
 }
 
 .item {
@@ -96,7 +100,7 @@ body {
     }
   }
   &.emphasis {
-    text-shadow: 1px 1px 0px #f2f2f2, 1px 2px 0px #b1b1b2;
+    @include text-shadow();
     transition: top 0s, left 0s, opacity 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
     opacity: 0.9;
     font-size: 7.25vw;

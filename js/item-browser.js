@@ -1,6 +1,7 @@
 var Data = require('./data');
 var State = require('./state');
 var albumCounter = require('./album-counter');
+var subredditNavigator = require("./subredditnavigator");
 
 var nextItem = function() {
   var $presentItem = $("#wrapper").children(".item.present");
@@ -8,6 +9,8 @@ var nextItem = function() {
   if ($presentItem.length == 0 || $nextItem.length == 0) {
     return;
   }
+
+  subredditNavigator.hide();
 
   $presentItem.removeClass("present").addClass("past");
   $nextItem.removeClass("future").addClass("present");
@@ -32,6 +35,8 @@ var prevItem = function() {
   if ($presentItem.length == 0 || $prevItem.length == 0) {
     return;
   }
+
+  subredditNavigator.hide();
 
   if ($prevItem.hasClass("imgur-album")) {
     albumCounter.show($prevItem.children(".imgur-album-image.present"), true);
