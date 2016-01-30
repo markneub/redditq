@@ -27,6 +27,15 @@ $border_width: 1px;
     }
   }
   .input-item {
+    &.sort-inputs {
+      height: 100%;
+      &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
+    }
     padding: 20px 5px;
     text-align: center;
     label,
@@ -61,8 +70,8 @@ $border_width: 1px;
     }
     .sort-chooser {
       position: relative;
-      display: block;
-      float: left;
+      display: inline-block;
+      vertical-align: middle;
       .choice {
         text-align: center;
         user-select: none;
@@ -86,17 +95,11 @@ $border_width: 1px;
       }
       &.t {
         margin-left: #{-0.8 * $border_radius}vw;
-        height: #{2 * $max_scale}vw;
         line-height: #{1.7 * $max_scale}vw;
-        margin-top: #{0.15 * $max_scale}vw;
-        margin-bottom: #{0.15 * $max_scale}vw;
         font-size: #{0.425 * $max_scale}vw;
         @media screen and (max-width: 2280px) {
           margin-left: -2px;
-          height: 60px;
           line-height: 51px;
-          margin-top: 4.5px;
-          margin-bottom: 4.5px;
           font-size: 12.75px;
         }
         z-index: 1;
