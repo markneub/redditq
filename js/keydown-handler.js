@@ -47,3 +47,7 @@ $(document).keydown(function(e) {
       break;
   }
 });
+
+$(document).on('keydown', 'input', function(e) {
+    e.stopPropagation();
+});

@@ -17,6 +17,19 @@ body {
   overflow: hidden;
 }
 
+@mixin dialog() {
+  background: linear-gradient(to bottom, #f4fcff 0%,#fdffed 15%,#fdfff4 50%,#fdffed 50%,#fdffed 50%,#fdffed 85%,#fdffed 85%,#f4fcff 100%);
+  box-shadow: 0px 0px 47px 8px rgba(0,0,0,0.25);
+  padding: 10px 14px;
+  color: #282828;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  border-radius: 12px;
+  transition: 0.1s all;
+  opacity: 0;
+}
+
 @mixin fullscreen-div() {
   position: absolute;
   top: 0;
@@ -70,18 +83,11 @@ body {
 
 #album-counter {
   position: absolute;
+  z-index: 2;
   top: 12px;
   left: 12px;
-  color: #000000;
-  font-size: 30px;
-  padding: 11px 12px;
-  font-family: Arial, serif;
-  z-index: 2;
-  background-color: white;
+  @include dialog();
   text-align: center;
-  border-radius: 12px;
-  transition: 0.1s opacity;
-  opacity: 0;
   &.visible {
     transition: 0.3s all cubic-bezier(0.26, 0.86, 0.44, 0.985);
     opacity: 0.3;
@@ -90,6 +96,7 @@ body {
     }
   }
   &.emphasis {
+    text-shadow: 1px 1px 0px #f2f2f2, 1px 2px 0px #b1b1b2;
     transition: top 0s, left 0s, opacity 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
     opacity: 0.9;
     font-size: 7.25vw;

@@ -45,6 +45,13 @@ var processUrl = function(url) {
   return newUrl;
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 Handlebars.registerHelper('addOne', function(value) {
   return value + 1;
 });
@@ -52,5 +59,6 @@ Handlebars.registerHelper('addOne', function(value) {
 module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,
-  processUrl: processUrl
+  processUrl: processUrl,
+  getParameterByName: getParameterByName
 }

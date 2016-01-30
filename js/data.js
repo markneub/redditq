@@ -95,7 +95,13 @@ var loadImages = function() {
   });
 }
 
+var clear = function() {
+  itemQueue = [];
+  $("#wrapper").empty();
+}
+
 module.exports = {
   download: download,
-  loadImages: loadImages
+  loadImages: loadImages,
+  clear: clear
 }
