@@ -1,5 +1,8 @@
 @import "app";
 $max_scale: 1.3;
+$border_color: #7F7F74;
+$border_radius: #{0.5 * $max_scale};
+$border_width: 1px;
 #subreddit-navigator {
   @include dialog();
   position: absolute;
@@ -8,6 +11,11 @@ $max_scale: 1.3;
   transform: translate(-50%, -50%) scale(0.95);
   font-size: #{1 * $max_scale}vw;
   padding: #{1 * $max_scale}vw;
+  @media screen and (max-width: 2280px) {
+    font-size: 30px;
+    padding: 30px;
+  }
+
   &.visible {
     transform: translate(-50%, -50%) scale(1);
     transition: 0.25s all;
@@ -16,65 +24,118 @@ $max_scale: 1.3;
   .input-item {
     padding: 20px 5px;
     text-align: center;
-    label, input {
+    label,
+    input {
       font-size: #{1 * $max_scale}vw;
+      @media screen and (max-width: 2280px) { font-size: 30px; }
     }
     input {
       padding: #{0.25 * $max_scale}vw #{0.1 * $max_scale}vw;
       width: #{7.5 * $max_scale}vw;
+      @media screen and (max-width: 2280px) {
+        padding: 7.5px 3px;
+        width: 225px;
+      }
     }
     button {
       font-size: #{$max_scale}vw;
       margin-top: #{1.5 * $max_scale}vw;
+      @media screen and (max-width: 2280px) {
+        font-size: 30px;
+        margin-top: 45px;
+      }
     }
     .sort-chooser {
-      .choice {
-        font-size: #{0.5 * $max_scale}vw;
-        text-transform: uppercase;
-        text-align: center;
-        background: pink;
-        height: #{2 * $max_scale}vw;
-        line-height: #{2 * $max_scale}vw;
-        width: #{3 * $max_scale}vw;
-        display: inline-block;
-        &:hover {
-          background: purple;
-        }
-        &.active {
-          background: red;
-        }
-        border-top: 1px solid red;
-        border-bottom: 1px solid red;
-        border-right: 1px solid red;
-      }
       position: relative;
       display: block;
       float: left;
+      .choice {
+        text-align: center;
+        width: #{3 * $max_scale}vw;
+        @media screen and (max-width: 2280px) { width: 90px; }
+        display: inline-block;
+        &:hover {
+          cursor: pointer;
+        }
+        border-top: $border_width solid $border_color;
+        border-bottom: $border_width solid $border_color;
+        border-right: $border_width solid $border_color;
+      }
       &.sort {
         z-index: 2;
+        height: #{2 * $max_scale}vw;
+        line-height: #{2 * $max_scale}vw;
+        font-size: #{0.5 * $max_scale}vw;
+        @media screen and (max-width: 2280px) {
+          height: 60px;
+          line-height: 60px;
+          font-size: 15px;
+        }
       }
       &.t {
-        margin-left: #{-0.2 * $max_scale}vw;
+        margin-left: #{-0.8 * $border_radius}vw;
+        height: #{2 * $max_scale}vw;
+        line-height: #{1.7 * $max_scale}vw;
+        margin-top: #{0.15 * $max_scale}vw;
+        margin-bottom: #{0.15 * $max_scale}vw;
+        font-size: #{0.425 * $max_scale}vw;
+        @media screen and (max-width: 2280px) {
+          margin-left: -2px;
+          height: 60px;
+          line-height: 51px;
+          margin-top: 4.5px;
+          margin-bottom: 4.5px;
+          font-size: 12.75px;
+        }
         z-index: 1;
         max-width: 0;
         overflow: hidden;
         white-space: nowrap;
-        transition: max-width 0.25s ease;
+        transition: max-width 0.3s ease;
         &.visible {
-          max-width: #{(3 * 6 + 0.2) * $max_scale}vw;;
+          max-width: #{(3 * 6 + 0.8) * $max_scale}vw;
+          @media screen and (max-width: 2280px) { max-width: 564px; }
         }
       }
     }
   }
 }
 
+// border control
 #hot {
-  border-left: 1px solid red;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-left: $border-width solid $border_color;
+  border-top-left-radius: #{$border_radius}vw;
+  border-bottom-left-radius: #{$border_radius}vw;
+}
+#top,
+#all {
+  border-top-right-radius: #{$border_radius}vw;
+  border-bottom-right-radius: #{$border_radius}vw;
 }
 
-#top, #all {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+// colors
+#hot,
+#new,
+#top {
+  background: transparent;
+  background: linear-gradient(to bottom, #fefff2 0%,#feffe8 100%);
+  &:hover {
+    background: #fdffe5;
+    background: linear-gradient(to bottom, #f1f2e6 0%, #f1f2dc 100%);
+  }
+  &.active {
+    background: #CEE9FF;
+  }
+}
+
+.t .choice {
+  background: transparent;
+  background: linear-gradient(to bottom, #fefff2 0%,#feffe8 100%);
+  &:hover {
+    background: #fdffe5;
+    background: linear-gradient(to bottom, #f1f2e6 0%, #f1f2dc 100%);
+  }
+  &.active {
+    background: #FFB7B4;
+  }
 }
