@@ -79,9 +79,20 @@ var prevImgurAlbumImage = function() {
   albumCounter.show($prevItem, false);
 }
 
+var showOriginal = function() {
+  var $el = $(".item.present");
+  var $link = $("<a />")
+                .css("display", "none")
+                .attr("target", "_blank")
+                .attr("href", $el.data("original"));
+  $link.appendTo("body")[0].click();
+  $link.remove();
+}
+
 module.exports = {
   nextItem: nextItem,
   prevItem: prevItem,
   nextImgurAlbumImage: nextImgurAlbumImage,
-  prevImgurAlbumImage: prevImgurAlbumImage
+  prevImgurAlbumImage: prevImgurAlbumImage,
+  showOriginal: showOriginal
 }

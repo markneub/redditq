@@ -7,6 +7,7 @@ var itemQueue = [];
 
 var addItem = function(child) {
   var data = child.data;
+  data.original = data.url;
   var url = Helpers.processUrl(data.url);
   data.url = url;
   var html = "";

@@ -49,7 +49,7 @@ $(document).keydown(function(e) {
       itemBrowser.prevItem();
       break;
     case KEYS.O_KEY:
-      alert($(".item.present").index());
+      itemBrowser.showOriginal();
       break;
   }
 });
