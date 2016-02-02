@@ -18,7 +18,9 @@ $border_width: 1px;
     padding: 30px;
   }
 
+  pointer-events: none;
   &.visible {
+    pointer-events: auto;
     transform: scale(1);
     transition: 0.25s all;
     opacity: 1;
