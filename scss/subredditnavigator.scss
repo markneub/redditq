@@ -1,8 +1,8 @@
 @import "app";
 $max_scale: 1.3;
-$border_color: #7F7F74;
 $border_radius: #{0.5 * $max_scale};
-$border_width: 0px;
+$border_color: #eee;
+$border_width: 1px;
 #subreddit-navigator {
   @include dialog();
   display: inline-block;
@@ -28,6 +28,8 @@ $border_width: 0px;
   }
   .input-item {
     &.sort-inputs {
+      margin-top: 20px;
+      margin-bottom: 20px;
       height: 100%;
       &:before {
         content: "";
@@ -54,20 +56,25 @@ $border_width: 0px;
     }
     input {
       &::placeholder {
-        color: #feffe8;
+        color: #eee;
         font-style: italic;
       }
       background: #d5d5d5;
       -webkit-appearance: none;
       border: none;
-      &:focus {
-        outline: none;
-      }
       width: #{10 * $max_scale}vw;
       @media screen and (max-width: 2280px) {
         width: 300px;
       }
     }
+
+    input, .choice, #view-btn {
+      &:focus {
+        outline: none;
+        box-shadow: inset 0 0 0 2px gold;
+      }
+    }
+
     .sort-chooser {
       position: relative;
       display: inline-block;
@@ -78,27 +85,23 @@ $border_width: 0px;
         width: #{3 * $max_scale}vw;
         @media screen and (max-width: 2280px) { width: 90px; }
         display: inline-block;
-        border-top: $border_width solid $border_color;
-        border-bottom: $border_width solid $border_color;
         border-right: $border_width solid $border_color;
       }
       &.sort {
         z-index: 2;
-        height: #{2 * $max_scale}vw;
-        line-height: #{2 * $max_scale}vw;
-        font-size: #{0.5 * $max_scale}vw;
+        height: #{2.5 * $max_scale}vw;
+        line-height: #{2.5 * $max_scale}vw;
+        font-size: #{0.6 * $max_scale}vw;
         @media screen and (max-width: 2280px) {
-          height: 60px;
-          line-height: 60px;
-          font-size: 15px;
+          height: 75px;
+          line-height: 75px;
+          font-size: 18px;
         }
       }
       &.t {
-        margin-left: #{-0.8 * $border_radius}vw;
         line-height: #{1.7 * $max_scale}vw;
         font-size: #{0.425 * $max_scale}vw;
         @media screen and (max-width: 2280px) {
-          margin-left: -2px;
           line-height: 51px;
           font-size: 12.75px;
         }
@@ -108,7 +111,7 @@ $border_width: 0px;
         white-space: nowrap;
         transition: max-width 0.3s ease;
         &.visible {
-          max-width: #{(3 * 6 + 0.8) * $max_scale}vw;
+          max-width: calc(#{(3 * 6) * $max_scale}vw + 5px);
           @media screen and (max-width: 2280px) { max-width: 564px; }
         }
       }
@@ -118,7 +121,6 @@ $border_width: 0px;
 
 // border control
 #hot {
-  border-left: $border-width solid $border_color;
   border-top-left-radius: #{$border_radius}vw;
   border-bottom-left-radius: #{$border_radius}vw;
 }
@@ -126,6 +128,7 @@ $border_width: 0px;
 #all {
   border-top-right-radius: #{$border_radius}vw;
   border-bottom-right-radius: #{$border_radius}vw;
+  border-right: none !important;
 }
 
 // colors
@@ -161,9 +164,9 @@ $border_width: 0px;
   color: inherit;
   background: #3DCC8A;
   padding: #{0.5 * $max_scale}vw #{1 * $max_scale}vw;
-  font-size: #{0.8 * $max_scale}vw;
+  font-size: #{1 * $max_scale}vw;
   @media screen and (max-width: 2280px) {
     padding: 15px 30px;
-    font-size: 24px;
+    font-size: 30px;
   }
 }

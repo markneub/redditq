@@ -18,7 +18,10 @@ var KEYS = {
   W_KEY: 87,
   D_KEY: 68,
   S_KEY: 83,
-  A_KEY: 65
+  A_KEY: 65,
+
+  // O key for "original"
+  O_KEY: 79
 };
 
 $(document).keydown(function(e) {
@@ -45,9 +48,14 @@ $(document).keydown(function(e) {
     case KEYS.A_KEY:
       itemBrowser.prevItem();
       break;
+    case KEYS.O_KEY:
+      alert($(".item.present").index());
+      break;
   }
 });
 
 $(document).on('keydown', 'input', function(e) {
+  if (e.which != KEYS.ESC_KEY) {
     e.stopPropagation();
+  }
 });

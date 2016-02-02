@@ -31,9 +31,34 @@ var show = function() {
 
   $(".sort-chooser.sort .choice").on("click", function(e) {
     if ($(this).is("#top")) {
-      $(".sort-chooser.t").addClass("visible");
+      $(".sort-chooser.t")
+        .addClass("visible")
+        .children()
+        .each(function(i, e) {
+          $(this).attr("tabindex", $(this).data("tabindex"));
+        });
     } else {
-      $(".sort-chooser.t").removeClass("visible");
+      $(".sort-chooser.t").removeClass("visible").children().attr("tabindex", "-1");
+    }
+  });
+
+  var keys = {
+    RETURN_KEY: 13,
+    SPACE_KEY: 32
+  };
+
+  $subredditNavigator.find("a.choice, #view-btn").on("keypress", function(e) {
+    // if the user presses the space bar on a link-button, treat as a click on that item
+    if (e.which == keys.SPACE_KEY) {
+      $(this).trigger("click");
+    }
+  }).add("input").on("keypress", function(e){
+    // if the user presses the return key while the text input or a link-button is focused, treat as a click on that item and then submit
+    if (e.which == keys.RETURN_KEY) {
+      $(this).trigger("click");
+      setTimeout(function(){
+        $("#view-btn").trigger("click");
+      }, 150);
     }
   });
 
@@ -51,10 +76,15 @@ var show = function() {
       location.href = newHref;
     }
   });
+
+  setTimeout(function(){
+    $subredditNavigator.find("input").focus();
+  }, 1);
 }
 
 var hide = function() {
   $subredditNavigator.removeClass("visible");
+  document.activeElement.blur();
 }
 
 var isVisible = function() {
