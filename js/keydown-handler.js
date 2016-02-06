@@ -1,6 +1,7 @@
 var itemBrowser = require("./item-browser");
 var subredditNavigator = require("./subredditnavigator");
 var title = require('./title');
+var screenfull = require('screenfull');
 
 var KEYS = {
   // show/hide subreddit navigator
@@ -32,10 +33,14 @@ var KEYS = {
   P_KEY: 80,
 
   // toggle submission title
-  T_KEY: 84
+  T_KEY: 84,
+
+  // toggle fullscreen
+  F_KEY: 70
 };
 
 $(document).keydown(function(e) {
+  console.log(e.which);
   switch (e.which) {
     case KEYS.R_KEY:
       subredditNavigator.isVisible() ? subredditNavigator.hide() : subredditNavigator.show();;
@@ -68,6 +73,11 @@ $(document).keydown(function(e) {
       break;
     case KEYS.T_KEY:
       title.toggle();
+      break;
+    case KEYS.F_KEY:
+      if (screenfull.enabled) {
+        screenfull.request();
+      }
       break;
   }
 });
