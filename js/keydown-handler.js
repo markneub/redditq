@@ -23,8 +23,12 @@ var KEYS = {
   // i key for "image"
   I_KEY: 73,
 
-  // o for options
-  O_KEY: 79
+  // o for "original"
+  O_KEY: 79,
+
+  // show reddit comments/permalink
+  C_KEY: 67,
+  P_KEY: 80
 };
 
 $(document).keydown(function(e) {
@@ -53,6 +57,10 @@ $(document).keydown(function(e) {
       break;
     case KEYS.I_KEY:
       itemBrowser.showOriginal();
+      break;
+    case KEYS.C_KEY:
+    case KEYS.P_KEY:
+      itemBrowser.showRedditComments();
       break;
   }
 });

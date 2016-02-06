@@ -2,6 +2,7 @@ var Helpers = require('./helpers');
 var State = require('./state');
 var imagesLoaded = require("imagesloaded");
 var imageTemplate = require("../templates/image.hbs");
+var albumTemplate = require("../templates/imgur-album.hbs");
 
 var itemQueue = [];
 
@@ -17,7 +18,7 @@ var addItem = function(item, loadImmediately) {
       addImage(templateData);
       break;
     case "imgur-album":
-      addImgurAlbum(item.data.url);
+      addImgurAlbum(templateData);
       break;
     default:
       console.log("Unsupported url encountered: " + url);
@@ -30,7 +31,8 @@ var addImage = function(templateData) {
   $(html).appendTo("#wrapper");
 }
 
-var addImgurAlbum = function(url) {
+var addImgurAlbum = function(templateData) {
+  var url = templateData.data.url;
   var id = url.split('/a/')[1];
   $.ajax({
     url: "https://api.imgur.com/3/album/" + id,
@@ -40,7 +42,8 @@ var addImgurAlbum = function(url) {
     },
     success: function(resp) {
       var data = resp.data;
-      var albumTemplate = require("../templates/imgur-album.hbs");
+      data.permalink = templateData.data.permalink;
+      console.debug(data);
       var html = albumTemplate(data);
       $(html).appendTo("#wrapper");
     }

@@ -1,3 +1,4 @@
+var Helpers = require('./helpers');
 var Data = require('./data');
 var State = require('./state');
 var albumCounter = require('./album-counter');
@@ -89,12 +90,10 @@ var prevImgurAlbumImage = function() {
 
 var showOriginal = function() {
   var $el = $(".item.present");
-  var $link = $("<a />")
-                .css("display", "none")
-                .attr("target", "_blank")
-                .attr("href", $el.data("original"));
-  $link.appendTo("body")[0].click();
-  $link.remove();
+  if ($el.hasClass("imgur-album")) {
+    $el = $(".item.present").children(".imgur-album-image.present");
+  }
+  Helpers.openLinkInNewTab($el.data("original"));
 }
 
 // only keep current and nearby images in memory
@@ -118,10 +117,16 @@ var setVisibleImages = function(isAlbum) {
   $presentItem.prev().prev().prev(isAlbum ? ".imgur-album-image" : ".image").add($presentItem.next().next().next(isAlbum ? ".imgur-album-image" : ".image")).css("background-image", "");
 }
 
+var showRedditComments = function() {
+  var $el = $(".item.present");
+  Helpers.openLinkInNewTab('https://www.reddit.com' + $el.data("permalink"));
+}
+
 module.exports = {
   nextItem: nextItem,
   prevItem: prevItem,
   nextImgurAlbumImage: nextImgurAlbumImage,
   prevImgurAlbumImage: prevImgurAlbumImage,
-  showOriginal: showOriginal
+  showOriginal: showOriginal,
+  showRedditComments: showRedditComments
 }

@@ -52,6 +52,15 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function openLinkInNewTab(url) {
+  var $link = $("<a />")
+                .css("display", "none")
+                .attr("target", "_blank")
+                .attr("href", url);
+  $link.appendTo("body")[0].click();
+  $link.remove();
+}
+
 Handlebars.registerHelper('addOne', function(value) {
   return value + 1;
 });
@@ -68,5 +77,6 @@ module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,
   processUrl: processUrl,
-  getParameterByName: getParameterByName
+  getParameterByName: getParameterByName,
+  openLinkInNewTab: openLinkInNewTab
 }
