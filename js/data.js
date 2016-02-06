@@ -5,23 +5,29 @@ var imageTemplate = require("../templates/image.hbs");
 
 var itemQueue = [];
 
-var addItem = function(child) {
-  var data = child.data;
-  data.original = data.url;
-  var url = Helpers.processUrl(data.url);
-  data.url = url;
-  var html = "";
+var addItem = function(item, loadImmediately) {
+  var url = item.data.url;
+  var templateData = {};
+  templateData.data = item.data;
+  templateData.processedUrl = Helpers.processUrl(url);
+  templateData.isFirst = $(".item.present").length == 0;
+  templateData.loadImmediately = $(".item").length <= 5;
   switch (Helpers.getMediaType(url)) {
-    case "imgur-album":
-      addImgurAlbum(url);
-      break;
     case "image":
-      addImage(data);
+      addImage(templateData);
+      break;
+    case "imgur-album":
+      addImgurAlbum(item.data.url);
       break;
     default:
-      console.log("Unsupported url type encountered: " + url);
+      console.log("Unsupported url encountered: " + url);
       break;
   }
+}
+
+var addImage = function(templateData) {
+  html = imageTemplate(templateData);
+  $(html).appendTo("#wrapper");
 }
 
 var addImgurAlbum = function(url) {
@@ -39,15 +45,6 @@ var addImgurAlbum = function(url) {
       $(html).appendTo("#wrapper");
     }
   });
-}
-
-var addImage = function(data) {
-  html = imageTemplate(data);
-  $(html).appendTo("#wrapper");
-  if ($("#wrapper").children(".item.present").length === 0) {
-    var $firstItem = $("#wrapper").children(":first-child");
-    $firstItem.removeClass("future").addClass("present");
-  }
 }
 
 var download = function(path, qs, afterId) {
@@ -83,17 +80,20 @@ var loadImages = function() {
   if (itemQueue.length === 0) {
     return;
   }
-  // Preload a maximum of 5 images ahead, each after the previous one is done loading
+
   var $activeItem = $('#wrapper').children('.item.present');
-  if ($activeItem.nextAll().length >= 4) {
-    return;
-  }
-  $('#wrapper').imagesLoaded({ background: '.item' }, function() {
-    if (itemQueue.length > 0) {
+  if ($activeItem.nextAll().length < 4) {
+    $('#wrapper').imagesLoaded({
+      background: '.item'
+    }, function() {
       addItem(itemQueue.shift());
       loadImages();
+    });
+  } else {
+    for (i = 0; i < itemQueue.length; i++) {
+      addItem(itemQueue.shift());
     }
-  });
+  }
 }
 
 var clear = function() {

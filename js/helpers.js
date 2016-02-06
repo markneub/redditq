@@ -56,6 +56,14 @@ Handlebars.registerHelper('addOne', function(value) {
   return value + 1;
 });
 
+Handlebars.registerHelper('ifFirstFive', function(index, options) {
+  if (index < 5) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
+
 module.exports = {
   getFileExtension: getFileExtension,
   getMediaType: getMediaType,

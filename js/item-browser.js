@@ -26,6 +26,8 @@ var nextItem = function() {
   if ($nextItem.next().next().length === 0) {
     Data.download(location.pathname, location.search, State.afterId);
   }
+
+  setVisibleImages(false);
 }
 
 var prevItem = function() {
@@ -46,6 +48,8 @@ var prevItem = function() {
 
   $presentItem.removeClass("present").addClass("future");
   $prevItem.removeClass("past").addClass("present");
+
+  setVisibleImages(false);
 }
 
 var nextImgurAlbumImage = function() {
@@ -61,6 +65,8 @@ var nextImgurAlbumImage = function() {
   $nextItem.removeClass("future").addClass("present");
 
   albumCounter.show($nextItem, false);
+
+  setVisibleImages(true);
 }
 
 var prevImgurAlbumImage = function() {
@@ -77,6 +83,8 @@ var prevImgurAlbumImage = function() {
   $prevItem.removeClass("past").addClass("present");
 
   albumCounter.show($prevItem, false);
+
+  setVisibleImages(true);
 }
 
 var showOriginal = function() {
@@ -87,6 +95,27 @@ var showOriginal = function() {
                 .attr("href", $el.data("original"));
   $link.appendTo("body")[0].click();
   $link.remove();
+}
+
+// only keep current and nearby images in memory
+var setVisibleImages = function(isAlbum) {
+  var $presentItem;
+  if (isAlbum) {
+    $presentItem = $("#wrapper").children(".item.present").children(".imgur-album-image.present");
+  } else {
+    $presentItem = $("#wrapper").children(".item.present");
+  }
+  $presentItem.add($presentItem.next())
+              .add($presentItem.next().next())
+              .add($presentItem.prev())
+              .add($presentItem.prev().prev())
+  .each(function(i, e) {
+    if ($(this).hasClass(isAlbum ? "imgur-album-image" : "image")) {
+      $(this).css("background-image", "url(" + $(this).data("url") + ")");
+    }
+  });
+
+  $presentItem.prev().prev().prev(isAlbum ? ".imgur-album-image" : ".image").add($presentItem.next().next().next(isAlbum ? ".imgur-album-image" : ".image")).css("background-image", "");
 }
 
 module.exports = {

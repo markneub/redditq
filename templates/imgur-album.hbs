@@ -1,6 +1,6 @@
-<div class="item imgur-album future" data-length="{{images.length}}">
+<div class="item imgur-album future" data-length="{{ images.length }}">
   {{#each images}}
-    <div data-index="{{addOne @index}}" class="imgur-album-image {{#if @first}}present{{/if}}{{#unless @first}}future{{/unless}}" style="background-image: url({{ link }})">
+    <div data-index="{{addOne @index}}" class="imgur-album-image {{#if @first}}present{{else}}future{{/if}}" data-original="{{ link }}" data-url="{{ link }}" {{#ifFirstFive @index}}style="background-image: url({{ link }});"{{/ifFirstFive}}>
     </div>
   {{/each}}
 </div>

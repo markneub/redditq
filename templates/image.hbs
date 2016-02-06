@@ -1,2 +1,2 @@
-<div class="item image future" data-original="{{ original }}" style="background-image: url({{ url }})">
+<div class="item image {{#if isFirst}}present{{else}}future{{/if}}" data-original="{{ data.url }}" data-url="{{ processedUrl }}" {{#if loadImmediately}}style="background-image: url({{ processedUrl }});"{{/if}}>
 </div>
