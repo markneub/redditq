@@ -1,3 +1,5 @@
+$title_height: 50;
+
 html {
   width: 100%;
   height: 100%;
@@ -15,6 +17,7 @@ body {
     vertical-align: middle;
     height: 100%;
   }
+  font-family: Arial, sans-serif;
 }
 
 #wrapper {
@@ -26,7 +29,7 @@ body {
   overflow: hidden;
   transition: height 0.2s ease;
   &.title {
-    height: calc(100% - 60px);
+    height: calc(100% - #{$title_height}px);
   }
 }
 
@@ -42,7 +45,6 @@ body {
   color: #333;
   text-decoration: none;
   font-size: 30px;
-  font-family: Arial, sans-serif;
   border-radius: 12px;
   transition: 0.1s all;
   opacity: 0;
@@ -132,14 +134,15 @@ body {
 
 #title {
   position: absolute;
-  height: 60px;
+  height: #{$title_height}px;
   left: 0;
   bottom: 0;
   right: 0;
   text-align: center;
   color: #333;
-  @include background();
-  line-height: 60px;
+  background: #feffe8;
+  background: linear-gradient(to bottom, #feffe8 0%,#edf1d5 100%);
+  line-height: #{$title_height}px;
   font-size: 18px;
   transform: translateY(100%);
   transition: transform 0.2s ease;
@@ -147,3 +150,5 @@ body {
     transform: translateY(0%);
   }
 }
+
+@import "subredditnavigator";

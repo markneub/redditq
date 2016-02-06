@@ -40,7 +40,6 @@ var KEYS = {
 };
 
 $(document).keydown(function(e) {
-  console.log(e.which);
   switch (e.which) {
     case KEYS.R_KEY:
       if (subredditNavigator.isVisible()) subredditNavigator.hide();
@@ -65,7 +64,7 @@ $(document).keydown(function(e) {
     case KEYS.A_KEY:
       itemBrowser.prevItem();
       break;
-    case KEYS.I_KEY:
+    case KEYS.O_KEY:
       itemBrowser.showOriginal();
       break;
     case KEYS.C_KEY:

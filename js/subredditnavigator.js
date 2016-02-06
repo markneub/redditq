@@ -1,5 +1,4 @@
 var urijs = require("urijs");
-require("../scss/subredditnavigator.scss");
 var template = require("../templates/subreddit-navigator.hbs");
 var Data = require("./data");
 var Helpers = require("./helpers");
