@@ -2,7 +2,7 @@ var $title = $("#title");
 var $wrapper = $("#wrapper");
 
 var update = function() {
-  $title.text($(".item.present").data("title"));
+  $title.html($(".item.present").data("title"));
 }
 
 var hide = function() {
@@ -11,6 +11,7 @@ var hide = function() {
 }
 
 var show = function() {
+  update();
   $title.addClass("visible");
   $wrapper.addClass("title");
 }

@@ -76,7 +76,6 @@ var downloadCompleteHandler = function(result) {
   if (itemQueue.length > 0) {
     addItem(itemQueue.shift());
     loadImages();
-    title.update();
   }
 };
 
