@@ -20,7 +20,10 @@ var KEYS = {
   S_KEY: 83,
   A_KEY: 65,
 
-  // O key for "original"
+  // i key for "image"
+  I_KEY: 73,
+
+  // o for options
   O_KEY: 79
 };
 
@@ -48,7 +51,7 @@ $(document).keydown(function(e) {
     case KEYS.A_KEY:
       itemBrowser.prevItem();
       break;
-    case KEYS.O_KEY:
+    case KEYS.I_KEY:
       itemBrowser.showOriginal();
       break;
   }
