@@ -44,6 +44,7 @@ var addImgurAlbum = function(templateData) {
     success: function(resp) {
       var data = resp.data;
       data.permalink = templateData.data.permalink;
+      data.title = templateData.data.title;
       var html = albumTemplate(data);
       $(html).appendTo("#wrapper");
     }
@@ -76,6 +77,7 @@ var downloadCompleteHandler = function(result) {
   if (itemQueue.length > 0) {
     addItem(itemQueue.shift());
     loadImages();
+    title.update();
   }
 };
 

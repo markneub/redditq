@@ -1,8 +1,18 @@
 var $title = $("#title");
 var $wrapper = $("#wrapper");
 
+var updateCounter = 0;
 var update = function() {
-  $title.html($(".item.present").data("title"));
+  var newTitle = $(".item.present").data("title");
+  if (!newTitle && updateCounter < 40) {
+    setTimeout(function() {
+      updateCounter++;
+      update();
+    }, 50);
+  } else {
+    updateCounter = 0;
+    $title.html($(".item.present").data("title"));
+  }
 }
 
 var hide = function() {
@@ -25,7 +35,12 @@ var toggle = function() {
   else show();
 }
 
+var clear = function() {
+  $title.html("");
+}
+
 module.exports = {
   update: update,
-  toggle: toggle
+  toggle: toggle,
+  clear: clear
 }

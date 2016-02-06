@@ -4,6 +4,7 @@ var template = require("../templates/subreddit-navigator.hbs");
 var Data = require("./data");
 var Helpers = require("./helpers");
 var albumCounter = require("./album-counter");
+var title = require('./title');
 
 var $subredditNavigator = $("#subreddit-navigator");
 
@@ -72,6 +73,7 @@ var show = function() {
       history.pushState({}, "", newHref);
       Data.download("/r/" + $("#subreddit").val() + "/" + sort, t);
       hide();
+      title.clear();
     } else {
       location.href = newHref;
     }
