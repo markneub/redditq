@@ -43,7 +43,8 @@ $(document).keydown(function(e) {
   console.log(e.which);
   switch (e.which) {
     case KEYS.R_KEY:
-      subredditNavigator.isVisible() ? subredditNavigator.hide() : subredditNavigator.show();;
+      if (subredditNavigator.isVisible()) subredditNavigator.hide();
+      else subredditNavigator.show();
       break;
     case KEYS.ESC_KEY:
       subredditNavigator.hide();
@@ -76,7 +77,8 @@ $(document).keydown(function(e) {
       break;
     case KEYS.F_KEY:
       if (screenfull.enabled) {
-        screenfull.request();
+        if (screenfull.isFullscreen) screenfull.exit();
+        else screenfull.request();
       }
       break;
   }
