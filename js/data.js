@@ -1,5 +1,6 @@
 var Helpers = require('./helpers');
 var State = require('./state');
+var title = require('./title');
 var imagesLoaded = require("imagesloaded");
 var imageTemplate = require("../templates/image.hbs");
 var albumTemplate = require("../templates/imgur-album.hbs");
@@ -43,7 +44,6 @@ var addImgurAlbum = function(templateData) {
     success: function(resp) {
       var data = resp.data;
       data.permalink = templateData.data.permalink;
-      console.debug(data);
       var html = albumTemplate(data);
       $(html).appendTo("#wrapper");
     }
@@ -76,6 +76,7 @@ var downloadCompleteHandler = function(result) {
   if (itemQueue.length > 0) {
     addItem(itemQueue.shift());
     loadImages();
+    title.update();
   }
 };
 

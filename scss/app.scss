@@ -2,6 +2,7 @@ html {
   width: 100%;
   height: 100%;
   position: absolute;
+  overflow: hidden;
 }
 
 body {
@@ -23,11 +24,19 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  transition: height 0.2s ease;
+  &.title {
+    height: calc(100% - 60px);
+  }
+}
+
+@mixin background() {
+  background: #feffe8;
+  background: linear-gradient(to bottom, #feffe8 0%,#d6dbbf 100%);
 }
 
 @mixin dialog() {
-  background: #feffe8;
-  background: linear-gradient(to bottom, #feffe8 0%,#d6dbbf 100%);
+  @include background();
   box-shadow: 0px 0px 47px 8px rgba(0,0,0,0.25);
   padding: 10px 14px;
   color: #333;
@@ -118,5 +127,22 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+#title {
+  position: absolute;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  @include background();
+  line-height: 60px;
+  font-size: 18px;
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+  &.visible {
+    transform: translateY(0%);
   }
 }

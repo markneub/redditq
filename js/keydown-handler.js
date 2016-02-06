@@ -1,5 +1,6 @@
 var itemBrowser = require("./item-browser");
 var subredditNavigator = require("./subredditnavigator");
+var title = require('./title');
 
 var KEYS = {
   // show/hide subreddit navigator
@@ -28,7 +29,10 @@ var KEYS = {
 
   // show reddit comments/permalink
   C_KEY: 67,
-  P_KEY: 80
+  P_KEY: 80,
+
+  // toggle submission title
+  T_KEY: 84
 };
 
 $(document).keydown(function(e) {
@@ -61,6 +65,9 @@ $(document).keydown(function(e) {
     case KEYS.C_KEY:
     case KEYS.P_KEY:
       itemBrowser.showRedditComments();
+      break;
+    case KEYS.T_KEY:
+      title.toggle();
       break;
   }
 });

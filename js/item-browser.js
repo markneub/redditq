@@ -3,6 +3,7 @@ var Data = require('./data');
 var State = require('./state');
 var albumCounter = require('./album-counter');
 var subredditNavigator = require("./subredditnavigator");
+var title = require('./title');
 
 var nextItem = function() {
   var $presentItem = $("#wrapper").children(".item.present");
@@ -29,6 +30,7 @@ var nextItem = function() {
   }
 
   setVisibleImages(false);
+  title.update();
 }
 
 var prevItem = function() {
@@ -51,6 +53,7 @@ var prevItem = function() {
   $prevItem.removeClass("past").addClass("present");
 
   setVisibleImages(false);
+  title.update();
 }
 
 var nextImgurAlbumImage = function() {
