@@ -1,4 +1,3 @@
-var urijs = require("urijs");
 var template = require("../templates/subreddit-navigator.hbs");
 var Data = require("./data");
 var Helpers = require("./helpers");
@@ -81,6 +80,12 @@ var show = function() {
   setTimeout(function(){
     $subredditNavigator.find("input").focus();
   }, 1);
+
+  // clicking on the page while the subreddit navigator is open should close it
+  // but not if the click happens to be on the navigator itself
+  $subredditNavigator.on("click", function(e) {
+    e.stopPropagation();
+  });
 }
 
 var hide = function() {

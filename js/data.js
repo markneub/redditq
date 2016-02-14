@@ -9,12 +9,13 @@ var itemQueue = [];
 
 var addItem = function(item, loadImmediately) {
   var url = item.data.url;
+  var processedUrl = Helpers.processUrl(url);
   var templateData = {};
   templateData.data = item.data;
-  templateData.processedUrl = Helpers.processUrl(url);
+  templateData.processedUrl = processedUrl;
   templateData.isFirst = $(".item.present").length == 0;
   templateData.loadImmediately = $(".item").length <= 5;
-  switch (Helpers.getMediaType(url)) {
+  switch (Helpers.getMediaType(processedUrl)) {
     case "image":
       addImage(templateData);
       break;

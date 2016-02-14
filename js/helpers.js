@@ -1,11 +1,9 @@
 var Handlebars = require("handlebars/runtime");
 var urijs = require("urijs");
 
-var getFileExtension = function(filename) {
-  return filename.split('.').pop().toLowerCase();
-}
-
 var getMediaType = function(url) {
+  var suffix = urijs(url).suffix();
+
   // imgur album
   if (url.indexOf('imgur.com/a/') > -1) {
     return "imgur-album";
@@ -16,7 +14,7 @@ var getMediaType = function(url) {
     return "image";
   }
 
-  switch (getFileExtension(url)) {
+  switch (suffix) {
     case "jpg":
     case "jpeg":
     case "png":
@@ -28,12 +26,14 @@ var getMediaType = function(url) {
 
 var processUrl = function(url) {
   var newUrl = url;
+  var domain = urijs(url).domain();
+  var suffix = urijs(url).suffix();
 
   // convert imgur page url into direct image url
-  if ((urijs(url).host().indexOf("imgur.com") > -1) &&
-      (url.indexOf("gallery") == -1) &&
-      (url.indexOf("/a/") == -1) &&
-      (urijs(url).suffix().length == 0)) {
+  if ((domain == "imgur.com") &&
+     (url.indexOf("gallery") == -1) &&
+     (url.indexOf("/a/") == -1) &&
+     (suffix == "")) {
     newUrl = url + ".jpg"; // any suffix is ok
   }
 
@@ -74,7 +74,6 @@ Handlebars.registerHelper('ifFirstFive', function(index, options) {
 });
 
 module.exports = {
-  getFileExtension: getFileExtension,
   getMediaType: getMediaType,
   processUrl: processUrl,
   getParameterByName: getParameterByName,

@@ -83,8 +83,17 @@ $(document).keydown(function(e) {
   }
 });
 
+// ignore all keypresses on input fields except for esc
+// i.e. don't respond to keypress handlers when typing input,
+// but close subreddit navigator when esc is pressed
 $(document).on('keydown', 'input', function(e) {
   if (e.which != KEYS.ESC_KEY) {
     e.stopPropagation();
   }
+});
+
+// hide subreddit navigator when clicking on the page
+// stopping evt propagation handled in subredditnavigator.js
+$(document).on('click', function(e) {
+  subredditNavigator.hide();
 });

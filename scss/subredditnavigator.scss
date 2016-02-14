@@ -165,9 +165,9 @@ $border_width: 1px;
   color: inherit;
   background: #3DCC8A;
   padding: #{0.5 * $max_scale}vw #{1 * $max_scale}vw;
-  font-size: #{1 * $max_scale}vw;
+  font-size: #{0.6 * $max_scale}vw;
   @media screen and (max-width: 2280px) {
     padding: 15px 30px;
-    font-size: 30px;
+    font-size: 18px;
   }
 }
