@@ -4,6 +4,7 @@ var title = require('./title');
 var imagesLoaded = require("imagesloaded");
 var imageTemplate = require("../templates/image.hbs");
 var albumTemplate = require("../templates/imgur-album.hbs");
+var subredditErrorTemplate = require("../templates/subreddit-error.hbs");
 
 var itemQueue = [];
 
@@ -53,12 +54,20 @@ var addImgurAlbum = function(templateData) {
 }
 
 var download = function(path, qs, afterId) {
+  var $subredditError = $("#subreddit-error");
+  $subredditError.hide();
   var url = buildUrl(path, qs, afterId);
   $.ajax({
     url: url,
     dataType: "json",
     success: function(resp) {
       downloadCompleteHandler(resp);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      var templateData = {};
+      templateData.subreddit = path.split("/")[2];
+      var html = subredditErrorTemplate(templateData);
+      $subredditError.html(html).show();
     }
   });
 };

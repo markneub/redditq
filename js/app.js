@@ -12,6 +12,7 @@ Data.download(path, qs);
 
 // test ajax
 // https://gfycat.com/cajax/get/ScaryGrizzledComet
+/*
 $.ajax({
   url: "https://gfycat.com/cajax/get/ScaryGrizzledComet",
   dataType: "json",
@@ -19,3 +20,4 @@ $.ajax({
     console.debug(resp);
   }
 });
+*/

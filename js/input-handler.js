@@ -40,6 +40,10 @@ var KEYS = {
 };
 
 $(document).keydown(function(e) {
+  // ignore key commands if cmd or ctrl is depressed at the same time
+  if (e.metaKey) {
+    return false;
+  }
   switch (e.which) {
     case KEYS.R_KEY:
       if (subredditNavigator.isVisible()) subredditNavigator.hide();

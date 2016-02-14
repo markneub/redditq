@@ -7,6 +7,7 @@ var title = require('./title');
 var $subredditNavigator = $("#subreddit-navigator");
 
 var show = function() {
+  // get characteristics of current subreddit view
   var subreddit = location.pathname.split("/")[2];
   var sort = location.pathname.split("/")[3] || "hot";
   var t = Helpers.getParameterByName("t") || "week";
@@ -52,7 +53,7 @@ var show = function() {
       $(this).trigger("click");
     }
   }).add("input").on("keypress", function(e){
-    // if the user presses the return key while the text input or a link-button is focused, treat as a click on that item and then submit
+    // if the user presses the return key while the text input or a link-button is focused, treat as a click on that item followed by a submit
     if (e.which == keys.RETURN_KEY) {
       $(this).trigger("click");
       setTimeout(function(){
@@ -63,13 +64,15 @@ var show = function() {
 
   $("#view-btn").click(function(e){
     var sort = $(".sort .choice.active").attr("id");
-    var t = sort == "top" ? "?t=" + $(".t .choice.active").attr("id") : "";
-    var newHref = "/r/" + $("#subreddit").val() + "/" + sort + t;
+    var subreddit = $("#subreddit").val();
+    var newPath = subreddit == "" ? "/" + sort : "/r/" + subreddit + "/" + sort;
+    var qs = sort == "top" ? "?sort=top&t=" + $(".t .choice.active").attr("id") : "";
+    var newHref = newPath + qs;
     if (history && history.pushState) {
       albumCounter.hide();
       Data.clear();
       history.pushState({}, "", newHref);
-      Data.download("/r/" + $("#subreddit").val() + "/" + sort, t);
+      Data.download(newPath, qs);
       hide();
       title.clear();
     } else {

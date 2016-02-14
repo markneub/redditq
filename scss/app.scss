@@ -141,7 +141,7 @@ body {
   text-align: center;
   color: #333;
   background: #feffe8;
-  background: linear-gradient(to bottom, #feffe8 0%,#edf1d5 100%);
+  background: linear-gradient(to bottom, #feffe8 0%, #edf1d5 100%);
   line-height: #{$title_height}px;
   font-size: 18px;
   transform: translateY(100%);
@@ -151,4 +151,6 @@ body {
   }
 }
 
-@import "subredditnavigator";
+@import "subreddit-navigator";
+
+@import "subreddit-error";

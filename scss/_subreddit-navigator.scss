@@ -3,6 +3,7 @@ $border_radius: #{0.5 * $max_scale};
 $border_color: #eee;
 $border_width: 1px;
 #subreddit-navigator {
+  z-index: 2;
   @include dialog();
   display: inline-block;
   position: relative;
