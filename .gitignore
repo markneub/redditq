@@ -1,3 +1,6 @@
+#config files
+config.conf.php
+
 # compiled files
 /build/
 
