@@ -8,7 +8,9 @@ require_once("../config.conf.php");
 $photo_id = $_GET["id"];
 
 $flickr = new phpFlickr($flickr_api_key);
-$flickr->enableCache("db", "mysql://$flickr_db_user:$flickr_db_pass@127.0.0.1/flickrcache");
+if ($_SERVER["HTTP_HOST"] !== "redditq.local") {
+  $flickr->enableCache("db", "mysql://$flickr_db_user:$flickr_db_pass@127.0.0.1/flickrcache");
+}
 $sizes = $flickr->photos_getSizes($photo_id);
 $source = "";
 // try to get a large (2048px) image, but settle for the last image size in the list if not available

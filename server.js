@@ -26,6 +26,12 @@ if (!isProduction) {
         target: 'http://localhost:8080'
     });
   });
+
+  var request = require('request');
+  app.all('/flickr/*', function(req, res) {
+    var url = "http://redditq.local" + req.url;
+    req.pipe(request(url)).pipe(res);
+  });
 }
 
 app.use(express.static(publicPath));
