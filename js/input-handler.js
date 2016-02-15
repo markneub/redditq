@@ -2,6 +2,7 @@ var itemBrowser = require("./item-browser");
 var subredditNavigator = require("./subredditnavigator");
 var title = require('./title');
 var screenfull = require('screenfull');
+var video = require('./video');
 
 var KEYS = {
   // show/hide subreddit navigator
@@ -36,10 +37,14 @@ var KEYS = {
   T_KEY: 84,
 
   // toggle fullscreen
-  F_KEY: 70
+  F_KEY: 70,
+
+  // pause/play video
+  SPACEBAR_KEY: 32
 };
 
 $(document).keydown(function(e) {
+  // console.log(e.which);
   if (!e.metaKey) {  // ignore key commands if cmd or ctrl is depressed at the same time
     switch (e.which) {
       case KEYS.R_KEY:
@@ -81,6 +86,11 @@ $(document).keydown(function(e) {
           else screenfull.request();
         }
         break;
+      case KEYS.SPACEBAR_KEY:
+        if (video.isPresentItem()) {
+          video.togglePlayPause();
+        }
+        break;
     }
   }
 });
@@ -94,8 +104,13 @@ $(document).on('keydown', 'input', function(e) {
   }
 });
 
-// hide subreddit navigator when clicking on the page
-// stopping evt propagation handled in subredditnavigator.js
 $(document).on('click', function(e) {
+  // hide subreddit navigator when clicking on the page
+  // stopping event propagation is handled in subredditnavigator.js
   subredditNavigator.hide();
+
+  // play/pause video if one is present
+  if (video.isPresentItem()) {
+    video.togglePlayPause();
+  }
 });

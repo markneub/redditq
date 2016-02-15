@@ -3,6 +3,7 @@ var State = require('./state');
 var title = require('./title');
 var imagesLoaded = require("imagesloaded");
 var imageTemplate = require("../templates/image.hbs");
+var videoTemplate = require("../templates/video.hbs");
 var albumTemplate = require("../templates/imgur-album.hbs");
 var subredditErrorTemplate = require("../templates/subreddit-error.hbs");
 
@@ -23,10 +24,25 @@ var addItem = function(item, loadImmediately) {
     case "imgur-album":
       addImgurAlbum(templateData);
       break;
+    case "imgur-gifv":
+      addImgurGifv(templateData);
+      break;
     default:
       console.log("Unsupported url encountered: " + url);
       break;
   }
+}
+
+var addImgurGifv = function(templateData) {
+  var url = templateData['data']['url'];
+  templateData.mp4url = url.replace("gifv", "mp4");
+  templateData.webmurl = url.replace("gifv", "webm");
+  addVideo(templateData);
+}
+
+var addVideo = function(templateData) {
+  var html = videoTemplate(templateData);
+  $(html).appendTo($("#wrapper"));
 }
 
 var addImage = function(templateData) {

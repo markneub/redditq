@@ -17,12 +17,20 @@ var nextItem = function() {
   $presentItem.removeClass("present").addClass("past");
   $nextItem.removeClass("future").addClass("present");
 
+  // handle imgur album
   if ($nextItem.hasClass("imgur-album")) {
     albumCounter.show($nextItem.children(".imgur-album-image.present"), true);
   } else {
     albumCounter.hide();
   };
   Data.loadImages();
+
+  // handle video
+  if ($nextItem.hasClass("video")) {
+    var videoEl = $nextItem.children("video").get(0);
+    videoEl.currentTime = 0;
+    videoEl.play();
+  }
 
   // download more images if we're close to the end
   if ($nextItem.next().next().length === 0) {
@@ -43,11 +51,19 @@ var prevItem = function() {
 
   subredditNavigator.hide();
 
+  // imgur album
   if ($prevItem.hasClass("imgur-album")) {
     albumCounter.show($prevItem.children(".imgur-album-image.present"), true);
   } else {
     albumCounter.hide();
   };
+
+  // handle video
+  if ($prevItem.hasClass("video")) {
+    var videoEl = $prevItem.children("video").get(0);
+    videoEl.currentTime = 0;
+    videoEl.play();
+  }
 
   $presentItem.removeClass("present").addClass("future");
   $prevItem.removeClass("past").addClass("present");

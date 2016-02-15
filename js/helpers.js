@@ -2,11 +2,18 @@ var Handlebars = require("handlebars/runtime");
 var urijs = require("urijs");
 
 var getMediaType = function(url) {
+  var domain = urijs(url).domain();
   var suffix = urijs(url).suffix();
+  var path = urijs(url).path();
 
   // imgur album
   if (url.indexOf('imgur.com/a/') > -1) {
     return "imgur-album";
+  }
+
+  // imgur gifv
+  if ((domain.indexOf("imgur.com") > -1) && (suffix == "gifv")) {
+    return "imgur-gifv";
   }
 
   // Some common sources don't use file extensions in the url, but still serve a plain ol' image file.
@@ -35,11 +42,6 @@ var processUrl = function(url) {
      (url.indexOf("/a/") == -1) &&
      (suffix == "")) {
     return url + ".jpg"; // any suffix is ok
-  }
-
-  // convert imgur gifv url into gif url by slicing off the final v
-  if (url.indexOf(".gifv") > -1) {
-    newUrl = url.slice(0, -1);
   }
 
   // get flickr direct image url
