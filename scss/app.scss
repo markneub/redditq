@@ -133,6 +133,7 @@ body {
 }
 
 #title {
+  text-shadow: .5px .5px 0px rgba(242, 242, 242, 0.5), .5px 1px .5px rgba(177, 177, 178, 0.5);
   position: absolute;
   height: #{$title_height}px;
   left: 0;
