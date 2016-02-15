@@ -25,16 +25,16 @@ var getMediaType = function(url) {
 }
 
 var processUrl = function(url) {
-  var newUrl = url;
   var domain = urijs(url).domain();
   var suffix = urijs(url).suffix();
+  var path = urijs(url).path();
 
   // convert imgur page url into direct image url
   if ((domain == "imgur.com") &&
      (url.indexOf("gallery") == -1) &&
      (url.indexOf("/a/") == -1) &&
      (suffix == "")) {
-    newUrl = url + ".jpg"; // any suffix is ok
+    return url + ".jpg"; // any suffix is ok
   }
 
   // convert imgur gifv url into gif url by slicing off the final v
@@ -42,7 +42,22 @@ var processUrl = function(url) {
     newUrl = url.slice(0, -1);
   }
 
-  return newUrl;
+  // get flickr direct image url
+  if (domain == "flickr.com" && suffix == "") {
+    var pathArray = path.split("/");
+    var photoId = pathArray[3];
+    $.get("/flickr/api.php?id=" + photoId, function(sourceUrl) {
+      // update image in page after it loads. hacky but it works (tm).
+      var $el = $(".item.image[data-url='flickr.jpg?id=" + photoId + "']");
+      $el.data("url", sourceUrl);
+      if ($el.hasClass("present")) {
+        $el.css("background-image", "url(" + sourceUrl + ")");
+      }
+    });
+    return "flickr.jpg?id=" + photoId;
+  }
+
+  return url;
 }
 
 function getParameterByName(name) {
