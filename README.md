@@ -4,7 +4,7 @@
 
 redditq is designed to be used with a keyboard.  Here of some of the
 
-<kbd>R</kbd> opens the sub*r*eddit navigator  
+<kbd>R</kbd> opens the sub_r_eddit navigator  
 <kbd>O</kbd> opens the originally submitted link in a new tab  
 <kbd>I</kbd> opens a direct link to the currently displayed image in a new tab  
 <kbd>F</kbd> toggles full screen  
