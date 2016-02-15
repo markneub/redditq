@@ -2,4 +2,4 @@
 
 ## Keyboard Controls
 
-<kbd>R</kbd>: opens the subreddit navigator
+<kbd style="font-size: 2em;">R</kbd>: opens the subreddit navigator
