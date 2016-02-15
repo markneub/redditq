@@ -40,50 +40,48 @@ var KEYS = {
 };
 
 $(document).keydown(function(e) {
-  // ignore key commands if cmd or ctrl is depressed at the same time
-  if (e.metaKey) {
-    return false;
-  }
-  switch (e.which) {
-    case KEYS.R_KEY:
-      if (subredditNavigator.isVisible()) subredditNavigator.hide();
-      else subredditNavigator.show();
-      break;
-    case KEYS.ESC_KEY:
-      subredditNavigator.hide();
-      break;
-    case KEYS.UP_KEY:
-    case KEYS.W_KEY:
-      itemBrowser.prevImgurAlbumImage();
-      break;
-    case KEYS.RIGHT_KEY:
-    case KEYS.D_KEY:
-      itemBrowser.nextItem();
-      break;
-    case KEYS.DOWN_KEY:
-    case KEYS.S_KEY:
-      itemBrowser.nextImgurAlbumImage();
-      break;
-    case KEYS.LEFT_KEY:
-    case KEYS.A_KEY:
-      itemBrowser.prevItem();
-      break;
-    case KEYS.O_KEY:
-      itemBrowser.showOriginal();
-      break;
-    case KEYS.C_KEY:
-    case KEYS.P_KEY:
-      itemBrowser.showRedditComments();
-      break;
-    case KEYS.T_KEY:
-      title.toggle();
-      break;
-    case KEYS.F_KEY:
-      if (screenfull.enabled) {
-        if (screenfull.isFullscreen) screenfull.exit();
-        else screenfull.request();
-      }
-      break;
+  if (!e.metaKey) {  // ignore key commands if cmd or ctrl is depressed at the same time
+    switch (e.which) {
+      case KEYS.R_KEY:
+        if (subredditNavigator.isVisible()) subredditNavigator.hide();
+        else subredditNavigator.show();
+        break;
+      case KEYS.ESC_KEY:
+        subredditNavigator.hide();
+        break;
+      case KEYS.UP_KEY:
+      case KEYS.W_KEY:
+        itemBrowser.prevImgurAlbumImage();
+        break;
+      case KEYS.RIGHT_KEY:
+      case KEYS.D_KEY:
+        itemBrowser.nextItem();
+        break;
+      case KEYS.DOWN_KEY:
+      case KEYS.S_KEY:
+        itemBrowser.nextImgurAlbumImage();
+        break;
+      case KEYS.LEFT_KEY:
+      case KEYS.A_KEY:
+        itemBrowser.prevItem();
+        break;
+      case KEYS.O_KEY:
+        itemBrowser.showOriginal();
+        break;
+      case KEYS.C_KEY:
+      case KEYS.P_KEY:
+        itemBrowser.showRedditComments();
+        break;
+      case KEYS.T_KEY:
+        title.toggle();
+        break;
+      case KEYS.F_KEY:
+        if (screenfull.enabled) {
+          if (screenfull.isFullscreen) screenfull.exit();
+          else screenfull.request();
+        }
+        break;
+    }
   }
 });
 
