@@ -9,8 +9,8 @@ redditq is designed to be used with a keyboard and allows easy navigation of ima
 ### Navigation
 <kbd>A</kbd> or <kbd>←</kbd> previous image  
 <kbd>D</kbd> or <kbd>→</kbd> next image  
-<kbd>W</kbd> or <kbd>↑</kbd> previous imgur gallery image  
-<kbd>S</kbd> or <kbd>↓</kbd> next imgur gallery image  
+<kbd>W</kbd> or <kbd>↑</kbd> previous Imgur gallery image  
+<kbd>S</kbd> or <kbd>↓</kbd> next Imgur gallery image  
 
 ### Other Commands
 <kbd>R</kbd> opens the sub**r**eddit navigator  
@@ -22,8 +22,8 @@ redditq is designed to be used with a keyboard and allows easy navigation of ima
 
 ## Features ##
 
-+ Browse images and GIFs from your favorite subreddits in a keyboard-driven, minimal interface
-+ Browse albums on Imgur
++ Shows content from direct image links, imgur photo page links, Flickr photo page links, and Imgur gifv links
 
 ## About ##
 
+## Build It Yourself
