@@ -4,10 +4,13 @@
 
 ## Keyboard Controls
 
-redditq is designed to be used with a keyboard.  Here are the main commands.
+redditq is designed to be used with a keyboard and allows easy navigation of images with your left or right hand.  Here are the main commands.
 
 ### Navigation
-<kbd>W</kbd> or <kbd>←</kbd> previous item
+<kbd>A</kbd> or <kbd>←</kbd> previous image
+<kbd>D</kbd> or <kbd>→</kbd> next image
+<kbd>W</kbd> or <kbd>↑</kbd> previous imgur gallery image
+<kbd>S</kbd> or <kbd>↓</kbd> next imgur gallery image
 
 ### Other Commands
 <kbd>R</kbd> opens the sub**r**eddit navigator  
