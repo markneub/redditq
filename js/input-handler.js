@@ -70,6 +70,9 @@ $(document).keydown(function(e) {
       case KEYS.A_KEY:
         itemBrowser.prevItem();
         break;
+      case KEYS.I_KEY:
+        itemBrowser.showImage();
+        break;
       case KEYS.O_KEY:
         itemBrowser.showOriginal();
         break;

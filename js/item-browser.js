@@ -107,11 +107,16 @@ var prevImgurAlbumImage = function() {
   setVisibleImages(true);
 }
 
-var showOriginal = function() {
+var showImage = function() {
   var $el = $(".item.present");
   if ($el.hasClass("imgur-album")) {
     $el = $(".item.present").children(".imgur-album-image.present");
   }
+  Helpers.openLinkInNewTab($el.data("url"));
+}
+
+var showOriginal = function() {
+  var $el = $(".item.present");
   Helpers.openLinkInNewTab($el.data("original"));
 }
 
@@ -146,6 +151,7 @@ module.exports = {
   prevItem: prevItem,
   nextImgurAlbumImage: nextImgurAlbumImage,
   prevImgurAlbumImage: prevImgurAlbumImage,
+  showImage: showImage,
   showOriginal: showOriginal,
   showRedditComments: showRedditComments
 }

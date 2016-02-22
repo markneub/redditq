@@ -67,6 +67,7 @@ var addImgurAlbum = function(templateData) {
     },
     success: function(resp) {
       var data = resp.data;
+      data.url = templateData.data.url;
       data.permalink = templateData.data.permalink;
       data.title = templateData.data.title;
       var html = albumTemplate(data);
@@ -86,6 +87,7 @@ var addImgurGallery = function(templateData) {
     },
     success: function(resp) {
       var data = resp.data;
+      data.url = templateData.data.url;
       data.permalink = templateData.data.permalink;
       data.title = templateData.data.title;
       var html = albumTemplate(data);
