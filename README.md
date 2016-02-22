@@ -1,29 +1,25 @@
-# redditq: minimal image browser for reddit.com
+# redditq: minimal image browser for reddit
 
-[redditq](https://www.redditq.com/ "redditq.com") is a minimal image browser for [reddit](https://www.reddit.com/ "reddit.com").
+redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image browser for [reddit](https://www.reddit.com/ "reddit.com"). It features a minimal user interface and is designed to be controlled via keyboard shortcuts.
 
-## Keyboard Controls
+## Navigation
 
-redditq is designed to be used with a keyboard and allows easy navigation of images with your left or right hand.  Here are the main commands.
+redditq uses the same URL scheme as reddit for subreddits, so you can browse any subreddit on redditq by simply adding a q after reddit in your browser URL bar. For example, view /r/earthporn on redditq at [https://redditq.com/r/earthporn](https://redditq.com/r/earthporn).
 
-### Navigation
+### Keyboard Controls
 <kbd>A</kbd> or <kbd>←</kbd> previous image  
 <kbd>D</kbd> or <kbd>→</kbd> next image  
 <kbd>W</kbd> or <kbd>↑</kbd> previous Imgur gallery image  
 <kbd>S</kbd> or <kbd>↓</kbd> next Imgur gallery image  
-
-### Other Commands
-<kbd>R</kbd> opens the sub**r**eddit navigator  
-<kbd>O</kbd> opens the **o**riginally submitted link in a new tab  
-<kbd>I</kbd> opens a direct link to the currently displayed **i**mage in a new tab  
-<kbd>F</kbd> toggles **f**ull screen  
-<kbd>C</kbd> opens the reddit **c**omments about the current image in a new tab  
-<kbd>T</kbd> toggles visibility of the submission **t**itle
-
-## Features ##
-
-+ Shows content from direct image links, imgur photo page links, Flickr photo page links, and Imgur gifv links
+  
+<kbd>R</kbd> open the sub**r**eddit navigator (try using <kbd>tab</kbd>, <kbd>space</kbd>, and <kbd>return</kbd> in the navigator)  
+<kbd>O</kbd> open the **o**riginally submitted link in a new tab  
+<kbd>I</kbd> open a direct link to the currently displayed **i**mage in a new tab  
+<kbd>F</kbd> toggle **f**ull screen  
+<kbd>C</kbd> open the reddit **c**omments about the current image in a new tab  
+<kbd>T</kbd> toggle visibility of the submission **t**itle  
+<kbd>/</kbd> or <kbd>?</kbd> view this README
 
 ## About ##
 
-## Build It Yourself
+This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to add support for image galleries and Flickr photo pages and experiment with a minimal UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as using [webpack](https://github.com/webpack/webpack) for bundling static assets (including JS modules).
