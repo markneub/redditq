@@ -16,7 +16,7 @@ redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image brow
 <kbd>I</kbd> opens a direct link to the currently displayed **i**mage in a new tab  
 <kbd>F</kbd> toggles **f**ull screen  
 <kbd>C</kbd> opens the reddit **c**omments about the current image in a new tab  
-<kbd>T</kbd> toggles visibility of the submission **t**itle
+<kbd>T</kbd> toggles visibility of the submission **t**itle  
 <kbd>/</kbd> or <kbd>?</kbd> view this README
 
 ## About ##
