@@ -11,12 +11,12 @@ redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image brow
 <kbd>S</kbd> or <kbd>↓</kbd> next Imgur gallery image  
 
 ### Other Commands
-<kbd>R</kbd> opens the sub**r**eddit navigator  
-<kbd>O</kbd> opens the **o**riginally submitted link in a new tab  
-<kbd>I</kbd> opens a direct link to the currently displayed **i**mage in a new tab  
-<kbd>F</kbd> toggles **f**ull screen  
-<kbd>C</kbd> opens the reddit **c**omments about the current image in a new tab  
-<kbd>T</kbd> toggles visibility of the submission **t**itle  
+<kbd>R</kbd> open the sub**r**eddit navigator  
+<kbd>O</kbd> open the **o**riginally submitted link in a new tab  
+<kbd>I</kbd> open a direct link to the currently displayed **i**mage in a new tab  
+<kbd>F</kbd> toggle **f**ull screen  
+<kbd>C</kbd> open the reddit **c**omments about the current image in a new tab  
+<kbd>T</kbd> toggle visibility of the submission **t**itle  
 <kbd>/</kbd> or <kbd>?</kbd> view this README
 
 ## About ##
