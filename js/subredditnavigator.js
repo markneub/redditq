@@ -76,6 +76,7 @@ var show = function() {
       albumCounter.hide();
       Data.clear();
       history.pushState({}, "", newHref);
+      ga('send', 'pageview', 'newHref');
       Data.download(newPath, qs);
       hide();
       title.clear();
