@@ -24,6 +24,9 @@ var addItem = function(item, loadImmediately) {
     case "imgur-album":
       addImgurAlbum(templateData);
       break;
+    case "imgur-gallery":
+      addImgurGallery(templateData);
+      break;
     case "imgur-gifv":
       addImgurGifv(templateData);
       break;
@@ -58,6 +61,25 @@ var addImgurAlbum = function(templateData) {
   var id = url.split('/a/')[1];
   $.ajax({
     url: "https://api.imgur.com/3/album/" + id,
+    dataType: "json",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");
+    },
+    success: function(resp) {
+      var data = resp.data;
+      data.permalink = templateData.data.permalink;
+      data.title = templateData.data.title;
+      var html = albumTemplate(data);
+      $(html).appendTo("#wrapper");
+    }
+  });
+}
+
+var addImgurGallery = function(templateData) {
+  var url = templateData.data.url;
+  var id = url.split('/gallery/')[1];
+  $.ajax({
+    url: "https://api.imgur.com/3/gallery/" + id,
     dataType: "json",
     beforeSend: function(xhr) {
       xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");

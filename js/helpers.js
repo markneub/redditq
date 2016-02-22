@@ -11,6 +11,11 @@ var getMediaType = function(url) {
     return "imgur-album";
   }
 
+  // imgur gallery
+  if (url.indexOf('imgur.com/gallery/') > -1) {
+    return "imgur-gallery";
+  }
+
   // imgur gifv
   if ((domain.indexOf("imgur.com") > -1) && (suffix == "gifv")) {
     return "imgur-gifv";
