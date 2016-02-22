@@ -21,11 +21,6 @@ var getMediaType = function(url) {
     return "imgur-gifv";
   }
 
-  // Some common sources don't use file extensions in the url, but still serve a plain ol' image file.
-  if (url.indexOf('500px.org') > -1) {
-    return "image";
-  }
-
   switch (suffix) {
     case "jpg":
     case "jpeg":
