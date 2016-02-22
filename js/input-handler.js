@@ -108,9 +108,4 @@ $(document).on('click', function(e) {
   // hide subreddit navigator when clicking on the page
   // stopping event propagation is handled in subredditnavigator.js
   subredditNavigator.hide();
-
-  // play/pause video if one is present
-  if (video.isPresentItem()) {
-    video.togglePlayPause();
-  }
 });

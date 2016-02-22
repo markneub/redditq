@@ -43,6 +43,9 @@ var addImgurGifv = function(templateData) {
 var addVideo = function(templateData) {
   var html = videoTemplate(templateData);
   $(html).appendTo($("#wrapper"));
+  if ((templateData).isFirst) {
+    $(".item.present.video").children("video").get(0).play();
+  }
 }
 
 var addImage = function(templateData) {
