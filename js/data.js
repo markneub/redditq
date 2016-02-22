@@ -22,10 +22,10 @@ var addItem = function(item, loadImmediately) {
       addImage(templateData);
       break;
     case "imgur-album":
-      addImgurAlbum(templateData);
+      addImgurAlbum(templateData, false);
       break;
     case "imgur-gallery":
-      addImgurGallery(templateData);
+      addImgurAlbum(templateData, true);
       break;
     case "imgur-gifv":
       addImgurGifv(templateData);
@@ -56,31 +56,15 @@ var addImage = function(templateData) {
   $(html).appendTo("#wrapper");
 }
 
-var addImgurAlbum = function(templateData) {
+var addImgurAlbum = function(templateData, isGallery) {
   var url = templateData.data.url;
-  var id = url.split('/a/')[1];
+  if (isGallery) {
+    var id = url.split('/gallery/')[1];
+  } else {
+    var id = url.split('/a/')[1];
+  }
   $.ajax({
-    url: "https://api.imgur.com/3/album/" + id,
-    dataType: "json",
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");
-    },
-    success: function(resp) {
-      var data = resp.data;
-      data.url = templateData.data.url;
-      data.permalink = templateData.data.permalink;
-      data.title = templateData.data.title;
-      var html = albumTemplate(data);
-      $(html).appendTo("#wrapper");
-    }
-  });
-}
-
-var addImgurGallery = function(templateData) {
-  var url = templateData.data.url;
-  var id = url.split('/gallery/')[1];
-  $.ajax({
-    url: "https://api.imgur.com/3/gallery/" + id,
+    url: "https://api.imgur.com/3/" + (isGallery? "gallery" : "album") + "/" + id,
     dataType: "json",
     beforeSend: function(xhr) {
       xhr.setRequestHeader("Authorization", "Client-ID ddf12e5f849636a");
