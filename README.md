@@ -11,7 +11,7 @@ redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image brow
 <kbd>S</kbd> or <kbd>↓</kbd> next Imgur gallery image  
 
 ### Other Commands
-<kbd>R</kbd> open the sub**r**eddit navigator  
+<kbd>R</kbd> open the sub**r**eddit navigator (try using <kbd>tab</kbd>, <kbd>space</kbd>, and <kbd>return</kbd> in the navigator)  
 <kbd>O</kbd> open the **o**riginally submitted link in a new tab  
 <kbd>I</kbd> open a direct link to the currently displayed **i**mage in a new tab  
 <kbd>F</kbd> toggle **f**ull screen  
