@@ -1,10 +1,10 @@
 # redditq: minimal image browser for reddit.com
 
-[redditq](https://www.redditq.com/ "redditq.com") is a minimal image browser for [reddit](https://www.reddit.com/ "reddit.com").
+redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image browser for [reddit](https://www.reddit.com/ "reddit.com"). It features a minimal user interface and is designed to be controlled via keyboard shortcuts.
 
 ## Keyboard Controls
 
-redditq is designed to be used with a keyboard and allows easy navigation of images with your left or right hand.  Here are the main commands.
+Here are the commands:
 
 ### Navigation
 <kbd>A</kbd> or <kbd>←</kbd> previous image  
@@ -20,10 +20,6 @@ redditq is designed to be used with a keyboard and allows easy navigation of ima
 <kbd>C</kbd> opens the reddit **c**omments about the current image in a new tab  
 <kbd>T</kbd> toggles visibility of the submission **t**itle
 
-## Features ##
-
-+ Shows content from direct image links, imgur photo page links, Flickr photo page links, and Imgur gifv links
-
 ## About ##
 
-## Build It Yourself
+This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to make something with a simpler interface and add support for image galleries. It was also an experiment in minimalist UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as [webpack](https://github.com/webpack/webpack) for bundling static assets.
