@@ -1,4 +1,4 @@
-<div class="item imgur-album future" data-title="{{ title }}" data-permalink="{{ permalink }}" data-length="{{ images.length }}">
+<div class="item imgur-album {{#if isFirst}}present{{else}}future{{/if}}" data-title="{{ title }}" data-permalink="{{ permalink }}" data-length="{{ images.length }}">
   {{#each images}}
     <div data-index="{{addOne @index}}" class="imgur-album-image {{#if @first}}present{{else}}future{{/if}}" data-original="{{ link }}" data-url="{{ link }}" {{#ifFirstFive @index}}style="background-image: url({{ link }});"{{/ifFirstFive}}>
     </div>

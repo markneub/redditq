@@ -1,4 +1,4 @@
-<div class="item video future" data-title="{{ data.title }}" data-permalink="{{ data.permalink }}" data-original="{{ data.url }}" data-url="{{ processedUrl }}">
+<div class="item video {{#if isFirst}}present{{else}}future{{/if}}" data-title="{{ data.title }}" data-permalink="{{ data.permalink }}" data-original="{{ data.url }}" data-url="{{ processedUrl }}">
   <video loop>
     <source src="{{ mp4url }}" type="video/mp4">
     <source src="{{ webmurl }}" type="video/webm">
