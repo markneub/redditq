@@ -1,3 +1,4 @@
+var Helpers = require("./helpers");
 var itemBrowser = require("./item-browser");
 var subredditNavigator = require("./subredditnavigator");
 var title = require('./title');
@@ -40,11 +41,17 @@ var KEYS = {
   F_KEY: 70,
 
   // pause/play video
-  SPACEBAR_KEY: 32
+  SPACEBAR_KEY: 32,
+
+  // slash key
+  SLASH_KEY: 191
 };
 
 $(document).keydown(function(e) {
   // console.log(e.which);
+  if (e.which == KEYS.SLASH_KEY) { // show README when user presses / or ?
+    Helpers.openLinkInNewTab("https://github.com/markneub/redditq/blob/master/README.md");
+  }
   if (!e.metaKey) {  // ignore key commands if cmd or ctrl is depressed at the same time
     switch (e.which) {
       case KEYS.R_KEY:
