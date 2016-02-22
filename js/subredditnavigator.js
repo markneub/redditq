@@ -24,7 +24,11 @@ var show = function() {
   });
 
   if ($("#top").hasClass("active")) {
-    $(".sort-chooser.t").addClass("visible");
+    $(".sort-chooser.t")
+      .addClass("visible")
+      .children().each(function(i, e) {
+        $(this).attr("tabindex", $(this).data("tabindex"));
+    });
   } else {
     $(".sort-chooser.t").removeClass("visible");
   }
