@@ -1,4 +1,4 @@
-# redditq: minimal image browser for reddit.com
+# redditq: minimal image browser for reddit
 
 redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image browser for [reddit](https://www.reddit.com/ "reddit.com"). It features a minimal user interface and is designed to be controlled via keyboard shortcuts.
 
