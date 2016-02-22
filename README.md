@@ -21,4 +21,4 @@ redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image brow
 
 ## About ##
 
-This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to make something with a simpler interface and add support for image galleries. It was also an experiment in minimalist UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as [webpack](https://github.com/webpack/webpack) for bundling static assets.
+This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to have support for image galleries and Flickr photo pages and experiment with a minimal UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as [webpack](https://github.com/webpack/webpack) for bundling static assets.
