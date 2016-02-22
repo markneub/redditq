@@ -4,8 +4,6 @@ redditq ([redditq.com](https://www.redditq.com/ "redditq.com")) is an image brow
 
 ## Keyboard Controls
 
-Here are the commands:
-
 ### Navigation
 <kbd>A</kbd> or <kbd>←</kbd> previous image  
 <kbd>D</kbd> or <kbd>→</kbd> next image  
