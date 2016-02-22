@@ -22,4 +22,4 @@ redditq uses the same URL scheme as reddit for subreddits, so you can browse any
 
 ## About ##
 
-This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to add support for image galleries and Flickr photo pages and experiment with a minimal UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as [webpack](https://github.com/webpack/webpack) for bundling static assets.
+This project was inspired by [redditp](https://www.redditp.com/ "redditp.com"). I wanted to add support for image galleries and Flickr photo pages and experiment with a minimal UI. From a technical standpoint, I wanted practice using CommonJS modules for structuring my JavaScript, as well as using [webpack](https://github.com/webpack/webpack) for bundling static assets (including JS modules).
